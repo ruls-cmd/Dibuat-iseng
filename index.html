@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+  <title>
+   RULS LAB  
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&amp;family=Unbounded:wght@500;800&amp;display=swap" rel="stylesheet"/>
+  <style>
+      @property --a {
+     syntax:'<angle>';
+     initial-value:0deg;
+     inherits:false
+   }
+   :root {
+     --spd:1;
+     --blur:22px;
+     --bo:.9;
+     --pink:#ff3b8d;
+     --pur:#a855f7;
+     --cy:#00e5c0;
+     --tx:#f4f1ff;
+     --mu:#a9a6c4;
+     color-scheme:dark;
+     box-sizing:border-box;
+     padding-top:env(safe-area-inset-top,0px);
+     padding-bottom:env(safe-area-inset-bottom,0px)
+   }
+   *,*::before,*::after {
+     box-sizing:inherit
+   }
+   html {
+     scroll-behavior:smooth;
+     scroll-padding-top:90px
+   }
+   body {
+     margin:0;
+     background:#07070d;
+     color:var(--tx);
+     font:500 16px/1.6 Manrope,system-ui,sans-serif;
+     min-height:100vh;
+     overflow-x:hidden
+   }
+   .bl {
+     position:fixed;
+     width:56vmax;
+     height:56vmax;
+     border-radius:50%;
+     opacity:var(--bo);
+     pointer-events:none;
+     z-index:0;
+     animation:fl calc(24s/var(--spd)) ease-in-out infinite alternate
+   }
+   .b1 {
+     background:radial-gradient(circle,var(--pink),transparent 65%);
+     top:-18vmax;
+     left:-14vmax
+   }
+   .b2 {
+     background:radial-gradient(circle,var(--pur),transparent 65%);
+     top:20vh;
+     right:-20vmax;
+     animation-delay:-8s
+   }
+   .b3 {
+     background:radial-gradient(circle,var(--cy),transparent 65%);
+     bottom:-24vmax;
+     left:15vw;
+     animation-delay:-16s
+   }
+   @keyframes fl {
+     to {
+       transform:translate(8vmax,6vmax) scale(1.15)
+     }
+   }
+   main,footer {
+     position:relative;
+     z-index:1
+   }
+   .g {
+     position:relative;
+     background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
+     backdrop-filter:blur(var(--blur)) saturate(190%);
+     -webkit-backdrop-filter:blur(var(--blur)) saturate(190%);
+     border:1px solid rgba(255,255,255,.16);
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(255,255,255,.06),inset 0 0 30px rgba(255,255,255,.04),0 24px 60px rgba(0,0,0,.4);
+     border-radius:28px
+   }
+   .g::before {
+     content:"";
+     position:absolute;
+     inset:0;
+     border-radius:inherit;
+     pointer-events:none;
+     background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.2),transparent 60%)
+   }
+   .ring::after {
+     content:"";
+     position:absolute;
+     inset:-1px;
+     border-radius:inherit;
+     padding:2px;
+     pointer-events:none;
+     opacity:0;
+     transition:opacity .3s;
+     background:conic-gradient(from var(--a),var(--pink),var(--pur),var(--cy),var(--pink));
+     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+     -webkit-mask-composite:xor;
+     mask-composite:exclude;
+     animation:spin calc(5s/var(--spd)) linear infinite
+   }
+   .ring:hover::after,.ring.on::after {
+     opacity:1
+   }
+   @keyframes spin {
+     to {
+       --a:360deg
+     }
+   }
+   :focus-visible {
+     outline:2px solid var(--cy);
+     outline-offset:3px
+   }
+   nav {
+     position:fixed;
+     z-index:5;
+     top:calc(12px + env(safe-area-inset-top,0px));
+     left:50%;
+     transform:translateX(-50%);
+     width:min(680px,calc(100% - 24px));
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     padding:.55rem .6rem .55rem 1.3rem;
+     border-radius:999px
+   }
+   nav b {
+     font:800 1rem Unbounded,sans-serif;
+     letter-spacing:.02em
+   }
+   nav div {
+     display:flex;
+     gap:.3rem
+   }
+   nav a {
+     color:var(--tx);
+     text-decoration:none;
+     padding:.45rem 1rem;
+     border-radius:999px;
+     font-weight:700;
+     font-size:.9rem
+   }
+   nav a:hover {
+     background:rgba(255,255,255,.14)
+   }
+   .wrap {
+     width:min(1080px,100% - 32px);
+     margin:auto
+   }
+   .hero {
+     min-height:100svh;
+     display:grid;
+     grid-template-columns:1.2fr .8fr;
+     gap:2rem;
+     align-items:center;
+     padding:110px 0 50px
+   }
+   h1 {
+     margin:0;
+     font:800 clamp(3.4rem,12vw,8.4rem)/.92 Unbounded,sans-serif;
+     background:linear-gradient(90deg,var(--pink),var(--pur),var(--cy),var(--pink));
+     background-size:300% 100%;
+     -webkit-background-clip:text;
+     background-clip:text;
+     color:transparent;
+     animation:rgb calc(7s/var(--spd)) linear infinite;
+     filter:drop-shadow(0 0 28px rgba(168,85,247,.45))
+   }
+   @keyframes rgb {
+     to {
+       background-position:300% 0
+     }
+   }
+   .hero p {
+     max-width:30em;
+     color:var(--mu);
+     font-size:1.1rem;
+     margin:1.4rem 0 1.8rem
+   }
+   .btn {
+     font:700 .95rem Manrope,sans-serif;
+     color:var(--tx);
+     cursor:pointer;
+     padding:.7rem 1.4rem;
+     border-radius:999px;
+     border:1px solid rgba(255,255,255,.22);
+     background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06));
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+     text-decoration:none;
+     display:inline-block
+   }
+   .btn:hover {
+     background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.1))
+   }
+   .orb {
+     width:min(340px,76vw);
+     aspect-ratio:1;
+     margin:auto;
+     display:grid;
+     place-items:center;
+     text-align:center;
+     border-radius:62% 38% 55% 45%/48% 58% 42% 52%;
+     animation:mo calc(11s/var(--spd)) ease-in-out infinite alternate;
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 0 60px rgba(255,255,255,.08),0 0 90px color-mix(in srgb,var(--pur) 45%,transparent),0 0 160px color-mix(in srgb,var(--cy) 18%,transparent)
+   }
+   .orb::before {
+     border-radius:inherit
+   }
+   @keyframes mo {
+     50% {
+       border-radius:42% 58% 38% 62%/58% 44% 56% 42%
+     }
+     to {
+       border-radius:55% 45% 62% 38%/40% 60% 40% 60%;
+       transform:rotate(8deg)
+     }
+   }
+   .orb small {
+     display:block;
+     color:var(--mu);
+     font-weight:700
+   }
+   .orb output {
+     font:800 clamp(1.5rem,5vw,2rem) Unbounded,sans-serif
+   }
+   section {
+     padding:70px 0
+   }
+   h2 {
+     font:800 clamp(1.7rem,4.5vw,2.6rem)/1.1 Unbounded,sans-serif;
+     margin:0 0 .6rem
+   }
+   .sub {
+     color:var(--mu);
+     margin:0 0 2rem;
+     max-width:36em
+   }
+   .cards {
+     display:grid;
+     grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+     gap:14px;
+     margin-bottom:18px
+   }
+   .card {
+     text-align:left;
+     color:var(--tx);
+     font:inherit;
+     cursor:pointer;
+     padding:1.3rem;
+     border-radius:24px
+   }
+   .card strong {
+     display:block;
+     font:800 1.05rem Unbounded,sans-serif;
+     margin-bottom:.4rem
+   }
+   .card span {
+     display:block;
+     color:var(--mu);
+     font-size:.92rem
+   }
+   .card em {
+     display:block;
+     margin-top:.8rem;
+     font-style:normal;
+     font-weight:700;
+     color:var(--cy);
+     font-size:.88rem
+   }
+   .stage {
+     padding:1.4rem;
+     min-height:300px
+   }
+   .hud {
+     display:flex;
+     flex-wrap:wrap;
+     gap:.6rem 1.4rem;
+     align-items:center;
+     justify-content:space-between;
+     margin-bottom:1rem;
+     color:var(--mu)
+   }
+   .hud b {
+     color:var(--tx)
+   }
+   canvas {
+     display:block;
+     margin:auto;
+     width:min(360px,100%);
+     height:auto;
+     border-radius:20px;
+     background:rgba(0,0,0,.4);
+     touch-action:none
+   }
+   .pad {
+     display:none;
+     grid-template-columns:repeat(3,64px);
+     gap:8px;
+     justify-content:center;
+     margin-top:14px
+   }
+   .pad button {
+     height:56px;
+     border-radius:18px;
+     border:1px solid rgba(255,255,255,.2);
+     background:rgba(255,255,255,.1);
+     color:var(--tx);
+     font-size:1.1rem
+   }
+   @media(hover:none) {
+     .pad {
+       display:grid
+     }
+   }
+   .mgrid {
+     display:grid;
+     grid-template-columns:repeat(4,1fr);
+     gap:10px;
+     max-width:360px;
+     margin:auto
+   }
+   .mgrid.xo {
+     grid-template-columns:repeat(3,1fr);
+     max-width:300px
+   }
+   .mc {
+     aspect-ratio:1;
+     border-radius:18px;
+     border:1px solid rgba(255,255,255,.18);
+     background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.05));
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+     font:800 1.9rem Unbounded,sans-serif;
+     cursor:pointer;
+     color:var(--tx)
+   }
+   .mc span {
+     opacity:0;
+     transition:opacity .25s
+   }
+   .mc.fl span {
+     opacity:1
+   }
+   .mc.ok {
+     box-shadow:0 0 22px rgba(0,229,192,.55),inset 0 1px 0 rgba(255,255,255,.4)
+   }
+   .rx {
+     width:100%;
+     min-height:220px;
+     border-radius:24px;
+     border:1px solid rgba(255,255,255,.2);
+     font:800 1.15rem Unbounded,sans-serif;
+     color:#fff;
+     cursor:pointer;
+     padding:1rem;
+     background:rgba(255,255,255,.08);
+     transition:background .15s
+   }
+   .rx[data-s=wait] {
+     background:rgba(255,59,141,.5);
+     box-shadow:0 0 50px rgba(255,59,141,.5)
+   }
+   .rx[data-s=go] {
+     background:rgba(0,229,192,.6);
+     box-shadow:0 0 60px rgba(0,229,192,.6)
+   }
+   .panel {
+     display:grid;
+     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+     gap:1.6rem;
+     padding:1.8rem
+   }
+   .panel label {
+     display:block;
+     font-weight:700;
+     margin-bottom:.4rem
+   }
+   .panel input {
+     width:100%;
+     accent-color:var(--pur)
+   }
+   footer {
+     text-align:center;
+     color:var(--mu);
+     padding:30px 16px 50px;
+     font-size:.9rem
+   }
+   @media(max-width:760px) {
+     .hero {
+       grid-template-columns:1fr;
+       padding-top:100px
+     }
+     .orb {
+       order:-1;
+       width:min(230px,60vw)
+     }
+   }
+   :root[data-p=senja] {
+     --pink:#ff6a3d;
+     --pur:#ff3b8d;
+     --cy:#ffc933
+   }
+   :root[data-p=aurora] {
+     --pink:#7c5cff;
+     --pur:#00b7ff;
+     --cy:#3dffa0
+   }
+   button,a,input {
+     touch-action:manipulation
+   }
+   .btn {
+     min-height:44px
+   }
+   .chips {
+     display:flex;
+     flex-wrap:wrap;
+     gap:8px
+   }
+   .chips .btn {
+     padding:.5rem 1.1rem
+   }
+   .chips .btn.on {
+     box-shadow:0 0 0 2px var(--cy),inset 0 1px 0 rgba(255,255,255,.4)
+   }
+   .b48 {
+     display:grid;
+     grid-template-columns:repeat(4,1fr);
+     gap:8px;
+     max-width:360px;
+     margin:auto;
+     padding:8px;
+     border-radius:20px;
+     background:rgba(0,0,0,.35);
+     touch-action:none
+   }
+   .t {
+     aspect-ratio:1;
+     border-radius:14px;
+     display:grid;
+     place-items:center;
+     font:800 1.5rem Unbounded,sans-serif;
+     background:rgba(255,255,255,.07);
+     transition:background .15s
+   }
+   @media(min-width:761px) and (max-width:1024px) {
+     .hero {
+       gap:1rem
+     }
+     .wrap {
+       width:min(900px,100% - 48px)
+     }
+   }
+   @media(min-width:1400px) {
+     .wrap {
+       width:min(1180px,100% - 64px)
+     }
+   }
+   @media(max-width:520px) {
+     nav {
+       padding-left:1rem
+     }
+     nav a {
+       padding:.45rem .7rem
+     }
+     .stage {
+       padding:1rem
+     }
+     .panel {
+       padding:1.3rem
+     }
+     .card {
+       padding:1.1rem
+     }
+     :root {
+       --blur:16px
+     }
+   }
+   @media(max-height:520px) and (orientation:landscape) {
+     .hero {
+       min-height:auto;
+       padding:90px 0 30px
+     }
+   }
+   .tick {
+     width:min(1180px,100% - 24px);
+     margin:0 auto;
+     border-radius:999px;
+     padding:.75rem 0
+   }
+   .tm {
+     overflow:hidden;
+     -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+     mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)
+   }
+   .tr {
+     display:flex;
+     width:max-content;
+     animation:tk calc(280s/var(--spd)) linear infinite
+   }
+   .tick:hover .tr {
+     animation-play-state:paused
+   }
+   .tr span {
+     position:relative;
+     white-space:nowrap;
+     padding:0 2.4rem;
+     font-weight:700
+   }
+   .tr span::after {
+     content:"";
+     position:absolute;
+     right:-5px;
+     top:50%;
+     width:10px;
+     height:10px;
+     margin-top:-5px;
+     border-radius:50%;
+     background:var(--pink);
+     box-shadow:0 0 12px var(--pink)
+   }
+   .tr span:nth-child(3n+2)::after {
+     background:var(--pur);
+     box-shadow:0 0 12px var(--pur)
+   }
+   .tr span:nth-child(3n)::after {
+     background:var(--cy);
+     box-shadow:0 0 12px var(--cy)
+   }
+   @keyframes tk {
+     to {
+       transform:translateX(-50%)
+     }
+   }
+   .qch {
+     display:flex;
+     flex-wrap:wrap;
+     gap:8px;
+     margin-bottom:16px
+   }
+   .qch .btn.on {
+     box-shadow:0 0 0 2px var(--cy),inset 0 1px 0 rgba(255,255,255,.4)
+   }
+   .qc {
+     padding:clamp(1.4rem,4vw,2.4rem)
+   }
+   .qc p {
+     font:700 clamp(1.25rem,3.4vw,2rem)/1.35 Manrope,sans-serif;
+     margin:0 0 1.6rem;
+     max-width:26em;
+     min-height:4.2em
+   }
+   .qc .hud {
+     margin:0
+   }
+   .sw {
+     animation:qin .45s ease
+   }
+   @keyframes qin {
+     from {
+       opacity:0;
+       transform:translateY(8px)
+     }
+   }
+   .bl.b1 {
+     animation:f1 calc(20s/var(--spd)) ease-in-out infinite
+   }
+   .bl.b2 {
+     animation:f2 calc(26s/var(--spd)) ease-in-out infinite
+   }
+   .bl.b3 {
+     animation:f3 calc(23s/var(--spd)) ease-in-out infinite
+   }
+   .bl.b4 {
+     width:38vmax;
+     height:38vmax;
+     top:0;
+     left:0;
+     animation:none;
+     opacity:calc(var(--bo)*.55);
+     background:radial-gradient(circle,var(--cy),color-mix(in srgb,var(--pur) 40%,transparent) 40%,transparent 68%);
+     mix-blend-mode:screen;
+     will-change:transform
+   }
+   @keyframes f1 {
+     0%,100% {
+       transform:translate(0,0) scale(1)
+     }
+     25% {
+       transform:translate(55vw,10vh) scale(1.2)
+     }
+     50% {
+       transform:translate(32vw,58vh) scale(.9)
+     }
+     75% {
+       transform:translate(-4vw,34vh) scale(1.15)
+     }
+   }
+   @keyframes f2 {
+     0%,100% {
+       transform:translate(0,0) scale(1)
+     }
+     25% {
+       transform:translate(-50vw,22vh) scale(1.15)
+     }
+     50% {
+       transform:translate(-20vw,-14vh) scale(.9)
+     }
+     75% {
+       transform:translate(8vw,32vh) scale(1.2)
+     }
+   }
+   @keyframes f3 {
+     0%,100% {
+       transform:translate(0,0) scale(1)
+     }
+     25% {
+       transform:translate(40vw,-28vh) scale(1.2)
+     }
+     50% {
+       transform:translate(-12vw,-48vh) scale(.95)
+     }
+     75% {
+       transform:translate(-14vw,-10vh) scale(1.1)
+     }
+   }
+   .mk {
+     display:grid;
+     grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+     gap:14px
+   }
+   .mk .g {
+     padding:1.2rem 1.3rem
+   }
+   .mk h3 {
+     margin:0 0 .2rem;
+     font:800 1rem Unbounded,sans-serif
+   }
+   .mk small {
+     color:var(--mu);
+     display:block
+   }
+   .mk svg {
+     width:100%;
+     height:auto;
+     display:block;
+     margin:.6rem 0
+   }
+   .chg {
+     font-weight:800
+   }
+   .up {
+     color:var(--cy)
+   }
+   .dn {
+     color:var(--pink)
+   }
+   .links {
+     display:flex;
+     flex-wrap:wrap;
+     gap:8px;
+     margin:18px 0 0
+   }
+   .calc {
+     display:grid;
+     grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+     gap:12px;
+     padding:1.4rem;
+     margin-top:14px
+   }
+   .calc h3 {
+     grid-column:1/-1;
+     margin:0;
+     font:800 1rem Unbounded,sans-serif
+   }
+   .calc label {
+     display:block;
+     font-weight:700;
+     font-size:.9rem;
+     margin-bottom:.3rem
+   }
+   .calc input {
+     width:100%;
+     padding:.6rem .8rem;
+     border-radius:14px;
+     border:1px solid rgba(255,255,255,.2);
+     background:rgba(0,0,0,.3);
+     color:var(--tx);
+     font:inherit
+   }
+   #cr {
+     grid-column:1/-1;
+     margin:0;
+     color:var(--mu)
+   }
+   @media(max-width:520px) {
+     nav b {
+       font-size:.85rem
+     }
+     nav a {
+       padding:.4rem .5rem;
+       font-size:.82rem
+     }
+   }
+   @media(prefers-reduced-motion:reduce) {
+     .tm {
+       overflow-x:auto
+     }
+     html {
+       scroll-behavior:auto
+     }
+   }
+   @media(prefers-reduced-motion:reduce) {
+     *,*::before,*::after {
+       animation:none!important;
+       transition:none!important
+     }
+   }
+   /* ================================
+      RULS LAB V3 — BUBBLE GLASS LAYER
+      ================================ */
+   :root {
+     --glass-edge: rgba(255,255,255,.28);
+     --glass-light: rgba(255,255,255,.12);
+     --glass-shadow: rgba(0,0,0,.48);
+   }
+   body::before,
+   body::after {
+     content:"";
+     position:fixed;
+     z-index:0;
+     pointer-events:none;
+     border-radius:50%;
+     filter:blur(1px);
+   }
+   body::before {
+     width:clamp(170px,28vw,390px);
+     height:clamp(170px,28vw,390px);
+     top:24%;
+     left:-9%;
+     background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.20),rgba(255,59,141,.09) 28%,rgba(168,85,247,.04) 55%,transparent 72%);
+     border:1px solid rgba(255,255,255,.10);
+     box-shadow:inset 12px 12px 35px rgba(255,255,255,.08),inset -18px -20px 40px rgba(168,85,247,.08),0 0 70px rgba(255,59,141,.08);
+     animation:bubbleDrift 24s ease-in-out infinite alternate;
+   }
+   body::after {
+     width:clamp(120px,19vw,270px);
+     height:clamp(120px,19vw,270px);
+     right:-5%;
+     bottom:10%;
+     background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.24),rgba(0,229,192,.09) 32%,rgba(168,85,247,.04) 58%,transparent 73%);
+     border:1px solid rgba(255,255,255,.12);
+     box-shadow:inset 10px 10px 30px rgba(255,255,255,.08),inset -15px -15px 35px rgba(0,229,192,.08),0 0 65px rgba(0,229,192,.08);
+     animation:bubbleDrift 19s ease-in-out -7s infinite alternate-reverse;
+   }
+   @keyframes bubbleDrift {
+     from {
+       transform:translate3d(0,0,0) scale(.94);
+     }
+     to {
+       transform:translate3d(5vw,-4vh,0) scale(1.08);
+     }
+   }
+   .g {
+     background:
+     radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.19),transparent 48%),
+     linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.045) 55%,rgba(255,255,255,.075));
+     border-color:var(--glass-edge);
+     box-shadow:
+     inset 1px 1px 0 rgba(255,255,255,.42),
+     inset -1px -1px 0 rgba(255,255,255,.07),
+     inset 0 0 34px rgba(255,255,255,.045),
+     0 22px 65px var(--glass-shadow),
+     0 0 34px rgba(168,85,247,.055);
+   }
+   .g::before {
+     background:
+     radial-gradient(220px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.24),transparent 62%),
+     linear-gradient(125deg,rgba(255,255,255,.07),transparent 34%);
+   }
+   .card,.stage,.qc,.panel,.calc,.mk>.g,.tick {
+     overflow:hidden;
+     isolation:isolate;
+   }
+   .card {
+     min-height:150px;
+     border-color:rgba(255,255,255,.22);
+     transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+   }
+   .card:hover {
+     transform:translateY(-5px);
+     border-color:rgba(255,255,255,.42);
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 24px 55px rgba(0,0,0,.42),0 0 28px rgba(168,85,247,.12);
+   }
+   .stage {
+     background:
+     radial-gradient(ellipse at 15% 0%,rgba(255,255,255,.13),transparent 48%),
+     linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.025));
+     border-color:rgba(255,255,255,.24);
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 0 55px rgba(255,255,255,.035),0 25px 70px rgba(0,0,0,.4);
+   }
+   .orb {
+     border:1px solid rgba(255,255,255,.25);
+     background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.25),rgba(255,255,255,.07) 35%,rgba(168,85,247,.08) 68%,rgba(0,229,192,.05));
+     backdrop-filter:blur(24px) saturate(190%);
+     -webkit-backdrop-filter:blur(24px) saturate(190%);
+   }
+   .btn {
+     backdrop-filter:blur(14px) saturate(160%);
+     -webkit-backdrop-filter:blur(14px) saturate(160%);
+   }
+   .panel input[type="range"] {
+     cursor:pointer;
+   }
+   #pasar .mk>.g {
+     padding:1.2rem;
+   }
+   #pasar .calc {
+     border:1px solid rgba(255,255,255,.23);
+     background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.045));
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.36),0 22px 55px rgba(0,0,0,.34);
+   }
+   /* Gelembung kaca dekoratif: tidak menangkap klik dan tidak mengganggu game. */
+   .bubble-field {
+     position:fixed;
+     inset:0;
+     z-index:0;
+     overflow:hidden;
+     pointer-events:none;
+   }
+   .bubble {
+     position:absolute;
+     display:block;
+     border-radius:50%;
+     border:1px solid rgba(255,255,255,.19);
+     background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.24),rgba(255,255,255,.055) 34%,rgba(168,85,247,.045) 62%,rgba(0,229,192,.025) 75%,transparent 100%);
+     box-shadow:inset 7px 7px 18px rgba(255,255,255,.10),inset -8px -10px 20px rgba(0,0,0,.12),0 0 28px rgba(255,255,255,.035);
+     opacity:.55;
+     animation:floatBubble var(--duration,22s) ease-in-out var(--delay,0s) infinite alternate;
+   }
+   .bubble::after {
+     content:"";
+     position:absolute;
+     width:22%;
+     height:10%;
+     top:18%;
+     left:20%;
+     border-radius:50%;
+     background:rgba(255,255,255,.28);
+     filter:blur(5px);
+     transform:rotate(-35deg);
+   }
+   .bubble:nth-child(1) {
+     width:54px;
+     height:54px;
+     left:12%;
+     top:30%;
+     --duration:18s;
+     --delay:-4s
+   }
+   .bubble:nth-child(2) {
+     width:24px;
+     height:24px;
+     left:78%;
+     top:18%;
+     --duration:14s;
+     --delay:-8s
+   }
+   .bubble:nth-child(3) {
+     width:86px;
+     height:86px;
+     left:88%;
+     top:56%;
+     --duration:25s;
+     --delay:-12s
+   }
+   .bubble:nth-child(4) {
+     width:34px;
+     height:34px;
+     left:43%;
+     top:78%;
+     --duration:17s;
+     --delay:-3s
+   }
+   .bubble:nth-child(5) {
+     width:66px;
+     height:66px;
+     left:5%;
+     top:82%;
+     --duration:23s;
+     --delay:-15s
+   }
+   .bubble:nth-child(6) {
+     width:18px;
+     height:18px;
+     left:62%;
+     top:10%;
+     --duration:13s;
+     --delay:-6s
+   }
+   @keyframes floatBubble {
+     from {
+       transform:translate3d(0,0,0) rotate(0deg);
+     }
+     to {
+       transform:translate3d(24px,-38px,0) rotate(18deg);
+     }
+   }
+   @media (prefers-reduced-motion:reduce) {
+     *,*::before,*::after {
+       animation-duration:.01ms!important;
+       animation-iteration-count:1!important;
+       scroll-behavior:auto!important;
+     }
+   }
+   @media(max-width:520px) {
+     .bubble {
+       opacity:.32;
+     }
+     .card:hover {
+       transform:none;
+     }
+   }
+  
+  .chart-frame { width:100%; margin:.8rem 0 1rem; overflow:hidden; border-radius:14px; background:rgba(8,12,24,.35); }
+  .chart-frame iframe { max-width:100%; }
+  @media (max-width:640px) { .chart-frame iframe { height:360px !important; } }
+</style>
+  <style>
+      /* RULS LAB V4 — LIQUID GLASS */
+   :root {
+     --liq-edge:rgba(255,255,255,.27);
+     --liq-hi:rgba(255,255,255,.19);
+     --liq-shadow:0 24px 70px rgba(0,0,0,.42);
+     --liq-radius:28px
+   }
+   body {
+     background:radial-gradient(ellipse at 12% 8%,rgba(255,59,141,.12),transparent 34%),radial-gradient(ellipse at 88% 36%,rgba(168,85,247,.13),transparent 36%),radial-gradient(ellipse at 52% 94%,rgba(0,229,192,.08),transparent 35%),#07070d
+   }
+   .g,.liquid,.tool-card {
+     isolation:isolate;
+     overflow:hidden;
+     border:1px solid var(--liq-edge);
+     background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.045) 40%,rgba(255,255,255,.018) 76%),linear-gradient(35deg,rgba(168,85,247,.045),transparent 48%,rgba(0,229,192,.035));
+     box-shadow:inset 0 1.5px 0 rgba(255,255,255,.43),inset 1px 0 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(255,255,255,.08),inset 0 0 34px rgba(255,255,255,.035),var(--liq-shadow);
+     backdrop-filter:blur(var(--blur,22px)) saturate(190%);
+     -webkit-backdrop-filter:blur(var(--blur,22px)) saturate(190%)
+   }
+   .g::after,.liquid::after,.tool-card::after {
+     content:"";
+     position:absolute;
+     z-index:-1;
+     inset:0;
+     border-radius:inherit;
+     pointer-events:none;
+     background:linear-gradient(118deg,rgba(255,255,255,.2),transparent 25% 68%,rgba(255,255,255,.05)),radial-gradient(ellipse at 50% -35%,rgba(255,255,255,.2),transparent 58%);
+     opacity:.72
+   }
+   .g::before {
+     z-index:0;
+     background:radial-gradient(280px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.22),transparent 62%),linear-gradient(120deg,rgba(255,255,255,.055),transparent 40%)
+   }
+   .g>*,.liquid>*,.tool-card>* {
+     position:relative;
+     z-index:1
+   }
+   .liquid {
+     position:relative;
+     border-radius:var(--liq-radius)
+   }
+   .liquid::before {
+     content:"";
+     position:absolute;
+     pointer-events:none;
+     inset:1px;
+     border-radius:inherit;
+     border-top:1px solid rgba(255,255,255,.34);
+     border-left:1px solid rgba(255,255,255,.13);
+     mask-image:linear-gradient(#000,transparent 72%)
+   }
+   .overview {
+     padding:62px 0 22px
+   }
+   .section-head {
+     display:flex;
+     align-items:end;
+     justify-content:space-between;
+     gap:18px;
+     margin-bottom:22px
+   }
+   .eyebrow,.tool-kicker {
+     color:var(--cy);
+     font-size:.68rem;
+     font-weight:800;
+     letter-spacing:.19em
+   }
+   .section-head h2 {
+     margin:.45rem 0 .55rem
+   }
+   .date-chip {
+     display:flex;
+     align-items:center;
+     gap:9px;
+     padding:11px 15px;
+     border-radius:999px;
+     color:var(--mu);
+     font-size:.78rem;
+     white-space:nowrap
+   }
+   .live-dot {
+     width:7px;
+     height:7px;
+     border-radius:50%;
+     background:var(--cy);
+     box-shadow:0 0 14px var(--cy)
+   }
+   .overview-grid {
+     display:grid;
+     grid-template-columns:repeat(4,1fr);
+     gap:14px
+   }
+   .stat-card {
+     padding:20px;
+     min-height:142px;
+     border-radius:23px;
+     display:flex;
+     flex-direction:column;
+     gap:7px
+   }
+   .stat-label {
+     color:var(--mu);
+     font-size:.68rem;
+     font-weight:800;
+     letter-spacing:.12em
+   }
+   .stat-card strong {
+     font:800 clamp(1.5rem,3vw,2.2rem)/1.2 Unbounded,sans-serif
+   }
+   .stat-card small {
+     color:var(--mu);
+     font-size:.75rem
+   }
+   .status-ready {
+     color:var(--cy)
+   }
+   .productivity {
+     padding:66px 0 56px
+   }
+   .productivity>h2 {
+     margin:.45rem 0 .55rem
+   }
+   .productivity-grid {
+     display:grid;
+     grid-template-columns:repeat(2,minmax(0,1fr));
+     gap:16px;
+     margin-top:24px
+   }
+   .tool-card {
+     position:relative;
+     padding:23px;
+     border-radius:27px;
+     min-width:0
+   }
+   .tool-heading {
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap:12px;
+     margin-bottom:19px
+   }
+   .tool-heading h3 {
+     margin:5px 0 0;
+     font:700 1.1rem Unbounded,sans-serif
+   }
+   .tool-icon {
+     display:grid;
+     place-items:center;
+     width:40px;
+     height:40px;
+     border-radius:14px;
+     color:var(--cy);
+     background:rgba(255,255,255,.08);
+     border:1px solid rgba(255,255,255,.14);
+     font-size:1.15rem
+   }
+   .task-form {
+     display:flex;
+     gap:8px
+   }
+   .task-form input,.notes-card textarea {
+     width:100%;
+     color:var(--tx);
+     border:1px solid rgba(255,255,255,.17);
+     background:rgba(5,5,15,.34);
+     border-radius:14px;
+     padding:12px 14px;
+     font:500 .88rem Manrope,sans-serif;
+     outline:none
+   }
+   .task-form input:focus,.notes-card textarea:focus {
+     border-color:var(--cy);
+     box-shadow:0 0 0 3px rgba(0,229,192,.1)
+   }
+   .task-progress {
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap:12px;
+     color:var(--mu);
+     font-size:.72rem;
+     margin:17px 0 8px
+   }
+   .progress-track {
+     width:42%;
+     height:6px;
+     border-radius:20px;
+     overflow:hidden;
+     background:rgba(255,255,255,.1)
+   }
+   .progress-track i {
+     display:block;
+     width:0;
+     height:100%;
+     border-radius:inherit;
+     background:linear-gradient(90deg,var(--pink),var(--pur),var(--cy));
+     transition:width .25s ease
+   }
+   .task-list {
+     list-style:none;
+     padding:0;
+     margin:0;
+     display:grid;
+     gap:7px;
+     max-height:210px;
+     overflow:auto
+   }
+   .task-item {
+     display:flex;
+     align-items:center;
+     gap:10px;
+     padding:9px 10px;
+     border-radius:12px;
+     background:rgba(255,255,255,.045);
+     border:1px solid rgba(255,255,255,.07)
+   }
+   .task-item input {
+     accent-color:var(--cy);
+     width:16px;
+     height:16px
+   }
+   .task-item span {
+     flex:1;
+     font-size:.82rem;
+     overflow-wrap:anywhere
+   }
+   .task-item.done span {
+     color:var(--mu);
+     text-decoration:line-through
+   }
+   .task-delete {
+     border:0;
+     background:transparent;
+     color:var(--mu);
+     cursor:pointer;
+     font-size:1rem;
+     padding:3px 7px
+   }
+   .text-button {
+     border:0;
+     padding:8px 0 0;
+     color:var(--cy);
+     background:none;
+     font:700 .75rem Manrope,sans-serif;
+     cursor:pointer
+   }
+   .timer-face {
+     display:flex;
+     flex-direction:column;
+     align-items:center;
+     justify-content:center;
+     padding:10px 0 18px
+   }
+   .timer-face strong {
+     font:800 clamp(2.5rem,7vw,3.5rem)/1.1 Unbounded,sans-serif;
+     letter-spacing:-.06em;
+     font-variant-numeric:tabular-nums
+   }
+   .timer-face span {
+     color:var(--mu);
+     font-size:.76rem;
+     margin-top:9px
+   }
+   .timer-presets,.tool-actions {
+     display:flex;
+     justify-content:center;
+     flex-wrap:wrap;
+     gap:8px
+   }
+   .preset {
+     border:1px solid rgba(255,255,255,.13);
+     border-radius:999px;
+     padding:8px 12px;
+     background:rgba(255,255,255,.045);
+     color:var(--mu);
+     font:700 .72rem Manrope,sans-serif;
+     cursor:pointer
+   }
+   .preset.active {
+     color:var(--tx);
+     border-color:rgba(0,229,192,.55);
+     background:rgba(0,229,192,.1)
+   }
+   .tool-actions {
+     margin-top:16px
+   }
+   .btn.primary {
+     background:linear-gradient(120deg,rgba(168,85,247,.45),rgba(0,229,192,.2));
+     border-color:rgba(255,255,255,.28)
+   }
+   .tool-note {
+     display:block;
+     color:var(--mu);
+     text-align:center;
+     margin-top:13px;
+     font-size:.68rem
+   }
+   .lap-list {
+     display:flex;
+     flex-wrap:wrap;
+     gap:7px;
+     list-style:none;
+     padding:0;
+     margin:13px 0 0
+   }
+   .lap-list li {
+     border-radius:9px;
+     padding:5px 9px;
+     background:rgba(255,255,255,.07);
+     color:var(--mu);
+     font-size:.7rem
+   }
+   .notes-card textarea {
+     display:block;
+     min-height:154px;
+     resize:vertical;
+     line-height:1.6
+   }
+   .note-meta {
+     display:flex;
+     justify-content:space-between;
+     color:var(--mu);
+     font-size:.68rem;
+     margin-top:8px
+   }
+   .setting-reset {
+     display:flex;
+     flex-direction:column;
+     gap:10px
+   }
+   .sr-only {
+     position:absolute!important;
+     width:1px!important;
+     height:1px!important;
+     padding:0!important;
+     margin:-1px!important;
+     overflow:hidden!important;
+     clip:rect(0,0,0,0)!important;
+     white-space:nowrap!important;
+     border:0!important
+   }
+   nav {
+     gap:8px
+   }
+   nav div {
+     overflow-x:auto;
+     scrollbar-width:none
+   }
+   nav div::-webkit-scrollbar {
+     display:none
+   }
+   nav a {
+     white-space:nowrap;
+     padding:.45rem .72rem;
+     font-size:.78rem
+   }
+   button,a {
+     -webkit-tap-highlight-color:transparent
+   }
+   @media(max-width:760px) {
+     .overview-grid {
+       grid-template-columns:repeat(2,minmax(0,1fr))
+     }
+     .productivity-grid {
+       grid-template-columns:1fr
+     }
+     .section-head {
+       align-items:start;
+       flex-direction:column
+     }
+     .date-chip {
+       align-self:flex-start
+     }
+   }
+   @media(max-width:560px) {
+     nav {
+       padding:.5rem .55rem .5rem .9rem
+     }
+     nav b {
+       font-size:.82rem;
+       white-space:nowrap
+     }
+     nav a {
+       padding:.4rem .58rem;
+       font-size:.72rem
+     }
+     .overview {
+       padding-top:46px
+     }
+     .stat-card {
+       min-height:122px;
+       padding:15px
+     }
+     .stat-label {
+       font-size:.6rem
+     }
+     .tool-card {
+       padding:18px;
+       border-radius:23px
+     }
+     .task-form {
+       flex-direction:column
+     }
+     .task-form .btn {
+       align-self:flex-start
+     }
+   }
+   @media(prefers-reduced-motion:reduce) {
+     *,*::before,*::after {
+       scroll-behavior:auto!important;
+       animation-duration:.01ms!important;
+       animation-iteration-count:1!important;
+       transition-duration:.01ms!important
+     }
+   }
+  </style>
+   <style>
+   .fb-card{margin-top:16px}
+   .fb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+   .fb-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+   .fb-field.full{grid-column:1/-1}
+   .fb-field>label,.fb-label{font:700 .72rem Manrope,sans-serif;color:var(--mu);letter-spacing:.04em;text-transform:uppercase}
+   .fb-card input[type=text],.fb-card textarea{width:100%;color:var(--tx);border:1px solid rgba(255,255,255,.17);background:rgba(5,5,15,.34);border-radius:14px;padding:12px 14px;font:500 .88rem Manrope,sans-serif;outline:none}
+   .fb-card input[type=text]:focus,.fb-card textarea:focus{border-color:var(--cy);box-shadow:0 0 0 3px rgba(0,229,192,.1)}
+   .fb-card textarea{min-height:140px;resize:vertical;line-height:1.6;display:block}
+   .fb-types{display:flex;flex-wrap:wrap;gap:8px}
+   .fb-types button,.fb-stars button{font:600 .8rem Manrope,sans-serif;color:var(--tx);cursor:pointer;border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.07);border-radius:999px;padding:8px 14px;transition:background .2s,border-color .2s,transform .15s}
+   .fb-types button:hover,.fb-stars button:hover{background:rgba(255,255,255,.14)}
+   .fb-types button.on{background:linear-gradient(120deg,rgba(168,85,247,.45),rgba(0,229,192,.2));border-color:rgba(255,255,255,.35)}
+   .fb-stars{display:flex;gap:6px}
+   .fb-stars button{padding:6px 11px;font-size:1.05rem;line-height:1;color:var(--mu)}
+   .fb-stars button.on{color:#ffd166;border-color:rgba(255,209,102,.5);background:rgba(255,209,102,.12)}
+   .fb-meta{display:flex;justify-content:space-between;gap:10px;color:var(--mu);font-size:.68rem}
+   .fb-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px}
+   .fb-status{font-size:.8rem;color:var(--mu);min-height:1.3em;flex:1 1 200px}
+   .fb-status.ok{color:var(--cy)}
+   .fb-status.err{color:#ff7a9c}
+   .fb-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+   .fb-card button:disabled{opacity:.55;cursor:not-allowed}
+   @media (max-width:640px){.fb-grid{grid-template-columns:1fr}.fb-actions .btn{flex:1 1 100%}}
+  
+  /* Mobile navigation: logo on top, all menu links visible in a 3-column grid */
+  @media (max-width:560px) {
+    nav.g {
+      width:calc(100% - 20px);
+      max-width:440px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:center;
+      gap:5px;
+      padding:9px 10px 8px;
+      border-radius:20px;
+    }
+    nav.g > b {
+      align-self:flex-start;
+      font-size:.78rem;
+      line-height:1.2;
+      padding:0 5px 2px;
+    }
+    nav.g > div {
+      width:100%;
+      min-width:0;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:4px;
+      overflow:visible;
+    }
+    nav.g > div > a {
+      min-width:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      white-space:nowrap;
+      padding:8px 2px;
+      font-size:clamp(.62rem,2.7vw,.72rem);
+      line-height:1.15;
+      border-radius:12px;
+    }
+  }
+  @media (max-width:360px) {
+    nav.g { padding:8px 7px 7px; }
+    nav.g > div > a { font-size:.61rem; padding:8px 1px; }
+  }
+
+</style>
+ </head>
+ <body>
+  <i class="bl b1">
+  </i>
+  <i class="bl b2">
+  </i>
+  <i class="bl b3">
+  </i>
+  <i class="bl b4">
+  </i>
+  <div aria-hidden="true" class="bubble-field">
+   <i class="bubble">
+   </i>
+   <i class="bubble">
+   </i>
+   <i class="bubble">
+   </i>
+   <i class="bubble">
+   </i>
+   <i class="bubble">
+   </i>
+   <i class="bubble">
+   </i>
+  </div>
+  <nav class="g ring on">
+   <b>
+    RULS LAB
+   </b>
+   <div>
+    <a href="#semangat">
+     Semangat
+    </a>
+    <a href="#game">
+     Game
+    </a>
+    <a href="#pasar">
+     Pasar
+    </a>
+    <a href="#panel">
+     Panel
+    </a>
+    <a href="#produktif">
+     Produktif
+    </a>
+    <a href="#saran">
+     Saran
+    </a>
+   </div>
+  </nav>
+  <main>
+   <div class="wrap hero">
+    <div>
+     <h1>
+      RULS
+      <br/>
+      LAB
+     </h1>
+     <p>
+      Ruang main sekaligus pengingat buat tetap jalan: belajar, berdagang, bekerja. Santai dulu lewat game, lalu lanjut.
+     </p>
+     <a class="btn ring on g" href="#game" style="border-radius:999px">
+      Mulai main
+     </a>
+    </div>
+    <div class="orb g">
+     <div>
+      <small>
+       Waktu lab
+      </small>
+      <output id="clk">
+       --:--:--
+      </output>
+     </div>
+    </div>
+   </div>
+   <div aria-hidden="true" class="tick g">
+    <div class="tm">
+     <div class="tr" id="tr">
+     </div>
+    </div>
+   </div>
+   <section aria-labelledby="overview-title" class="wrap overview" id="overview">
+    <div class="section-head">
+     <div>
+      <span class="eyebrow">
+       CONTROL CENTER
+      </span>
+      <h2 id="overview-title">
+       Ringkasan lab
+      </h2>
+      <p class="sub">
+       Aktivitas dan progres yang tersimpan di browser ini.
+      </p>
+     </div>
+     <div class="date-chip liquid">
+      <i class="live-dot">
+      </i>
+      <span id="todayLabel">
+       Memuat tanggal…
+      </span>
+     </div>
+    </div>
+    <div class="overview-grid">
+     <article class="stat-card liquid">
+      <span class="stat-label">
+       TOTAL REKOR
+      </span>
+      <strong id="totalRecords">
+       0
+      </strong>
+      <small>
+       Game dengan rekor tersimpan
+      </small>
+     </article>
+     <article class="stat-card liquid">
+      <span class="stat-label">
+       GAME DIMAINKAN
+      </span>
+      <strong id="gamesPlayed">
+       0 / 6
+      </strong>
+      <small>
+       Jenis game dengan progres
+      </small>
+     </article>
+     <article class="stat-card liquid">
+      <span class="stat-label">
+       TOPIK QUOTE
+      </span>
+      <strong id="quoteTopic">
+       Belajar
+      </strong>
+      <small>
+       Pengingat yang dipilih
+      </small>
+     </article>
+     <article class="stat-card liquid">
+      <span class="stat-label">
+       STATUS LAB
+      </span>
+      <strong class="status-ready">
+       READY
+      </strong>
+      <small>
+       Mode lokal · data di perangkat
+      </small>
+     </article>
+    </div>
+   </section>
+   <div class="wrap" id="semangat" style="padding:80px 0 20px">
+    <h2>
+     Semangat hari ini
+    </h2>
+    <p class="sub">
+     Buat yang lagi belajar, bekerja, atau main di pasar saham, crypto, dan forex. Cuma pengingat mindset, bukan saran investasi.
+    </p>
+    <div aria-label="Topik quote" class="qch" role="group">
+     <button class="btn" data-q="belajar">
+      Belajar
+     </button>
+     <button class="btn" data-q="dagang">
+      Berdagang
+     </button>
+     <button class="btn" data-q="saham">
+      Saham
+     </button>
+     <button class="btn" data-q="crypto">
+      Crypto
+     </button>
+     <button class="btn" data-q="forex">
+      Forex
+     </button>
+     <button class="btn" data-q="kerja">
+      Bekerja
+     </button>
+    </div>
+    <div class="qc g ring on">
+     <p aria-live="polite" id="qt">
+     </p>
+     <div class="hud">
+      <span id="qn">
+      </span>
+      <span>
+       <button class="btn" id="qs">
+        Salin
+       </button>
+       <button class="btn" id="qx">
+        Quote lain
+       </button>
+      </span>
+     </div>
+    </div>
+   </div>
+   <div class="wrap" id="game" style="padding:70px 0">
+    <h2>
+     Pilih game
+    </h2>
+    <p class="sub">
+     Enam game ringan. Rekor tersimpan di browser kamu.
+    </p>
+    <div class="cards" id="cards">
+    </div>
+    <div class="stage g ring on" id="stage">
+    </div>
+   </div>
+   <div class="wrap" id="pasar" style="padding:30px 0 70px">
+    <h2>
+     Pantau pasar
+    </h2>
+    <p class="sub">
+     Bitcoin memakai harga live Binance dan chart candlestick TradingView dengan pilihan timeframe serta volume. IHSG dan USD/IDR memakai widget TradingView; data bursa/forex gratis dapat tertunda. Ketersediaan data mengikuti penyedia. Bukan saran investasi.
+    </p>
+    <div class="mk">
+     <div class="g">
+      <h3>
+       IHSG
+      </h3>
+      <small>
+       TradingView · data indeks dapat tertunda sesuai paket data bursa.
+      </small>
+      <div id="ch1">
+      </div>
+      <button class="btn" id="tg1" type="button">
+       Lihat data contoh
+      </button>
+     </div>
+     <div class="g">
+      <h3>
+       Bitcoin (BTC/USDT)
+      </h3>
+      <small id="btcNote">
+       Menghubungkan ke Binance… kalau gagal, yang tampil data contoh dari berita (14 Nov).
+      </small>
+      <div id="ch2">
+      </div>
+      <div class="chart-frame" id="ch2tv" aria-label="Chart candlestick Bitcoin"></div>
+     </div>
+     <div class="g">
+      <h3>
+       USD/IDR
+      </h3>
+      <small>
+       TradingView · data forex dapat tertunda dan bergantung pada penyedia.
+      </small>
+      <div id="ch3">
+      </div>
+     </div>
+    </div>
+    <div class="links">
+     <a class="btn" href="https://www.tradingview.com/chart/?symbol=IDX%3ACOMPOSITE" rel="noopener" target="_blank">
+      Chart IHSG
+     </a>
+     <a class="btn" href="https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT" rel="noopener" target="_blank">
+      Chart BTC
+     </a>
+     <a class="btn" href="https://www.tradingview.com/chart/?symbol=FX_IDC%3AUSDIDR" rel="noopener" target="_blank">
+      Chart USD/IDR
+     </a>
+     <a class="btn" href="https://coinmarketcap.com/" rel="noopener" target="_blank">
+      CoinMarketCap
+     </a>
+     <a class="btn" href="https://www.idx.co.id/" rel="noopener" target="_blank">
+      Bursa Efek Indonesia
+     </a>
+     <a class="btn" href="https://www.investing.com/economic-calendar/" rel="noopener" target="_blank">
+      Kalender ekonomi
+     </a>
+    </div>
+    <div class="calc g">
+     <h3>
+      Kalkulator risiko per transaksi
+     </h3>
+     <div>
+      <label for="cm">
+       Modal
+      </label>
+      <input id="cm" inputmode="decimal" min="0" type="number" value="1000"/>
+     </div>
+     <div>
+      <label for="cp">
+       Risiko (%)
+      </label>
+      <input id="cp" inputmode="decimal" min="0" step="0.1" type="number" value="1"/>
+     </div>
+     <div>
+      <label for="ce">
+       Harga masuk
+      </label>
+      <input id="ce" inputmode="decimal" min="0" step="any" type="number" value="100"/>
+     </div>
+     <div>
+      <label for="cs">
+       Stop loss
+      </label>
+      <input id="cs" inputmode="decimal" min="0" step="any" type="number" value="95"/>
+     </div>
+     <p aria-live="polite" id="cr">
+     </p>
+    </div>
+   </div>
+   <section aria-labelledby="productivity-title" class="wrap productivity" id="produktif">
+    <span class="eyebrow">
+     FOCUS WORKSPACE
+    </span>
+    <h2 id="productivity-title">
+     Productivity corner
+    </h2>
+    <p class="sub">
+     Alat praktis untuk mengatur fokus. Tugas dan catatan disimpan lokal di browser.
+    </p>
+    <div class="productivity-grid">
+     <article class="tool-card liquid">
+      <div class="tool-heading">
+       <div>
+        <span class="tool-kicker">
+         01 / TASK MANAGER
+        </span>
+        <h3>
+         Daftar tugas
+        </h3>
+       </div>
+       <span class="tool-icon">
+        ✓
+       </span>
+      </div>
+      <form class="task-form" id="taskForm">
+       <label class="sr-only" for="taskInput">
+        Tugas baru
+       </label>
+       <input autocomplete="off" id="taskInput" maxlength="90" placeholder="Tulis satu tugas penting…"/>
+       <button class="btn" type="submit">
+        Tambah
+       </button>
+      </form>
+      <div class="task-progress">
+       <span id="taskProgressText">
+        0 dari 0 selesai
+       </span>
+       <div class="progress-track">
+        <i id="taskProgressBar">
+        </i>
+       </div>
+      </div>
+      <ul aria-live="polite" class="task-list" id="taskList">
+      </ul>
+      <button class="text-button" id="clearCompleted" type="button">
+       Hapus yang selesai
+      </button>
+     </article>
+     <article class="tool-card liquid">
+      <div class="tool-heading">
+       <div>
+        <span class="tool-kicker">
+         02 / POMODORO
+        </span>
+        <h3>
+         Timer fokus
+        </h3>
+       </div>
+       <span class="tool-icon">
+        ◷
+       </span>
+      </div>
+      <div class="timer-face">
+       <strong id="focusClock">
+        25:00
+       </strong>
+       <span id="focusStatus">
+        Siap untuk fokus
+       </span>
+      </div>
+      <div aria-label="Durasi timer" class="timer-presets" role="group">
+       <button class="preset active" data-minutes="25" type="button">
+        25 menit
+       </button>
+       <button class="preset" data-minutes="15" type="button">
+        15 menit
+       </button>
+       <button class="preset" data-minutes="5" type="button">
+        5 menit
+       </button>
+      </div>
+      <div class="tool-actions">
+       <button class="btn primary" id="focusStart" type="button">
+        Mulai
+       </button>
+       <button class="btn" id="focusReset" type="button">
+        Reset
+       </button>
+      </div>
+      <small class="tool-note">
+       Timer aktif selama halaman tetap terbuka.
+      </small>
+     </article>
+     <article class="tool-card liquid">
+      <div class="tool-heading">
+       <div>
+        <span class="tool-kicker">
+         03 / STOPWATCH
+        </span>
+        <h3>
+         Pengukur waktu
+        </h3>
+       </div>
+       <span class="tool-icon">
+        ⏱
+       </span>
+      </div>
+      <div class="timer-face">
+       <strong id="stopwatchClock">
+        00:00.0
+       </strong>
+       <span id="stopwatchStatus">
+        Belum dimulai
+       </span>
+      </div>
+      <div class="tool-actions">
+       <button class="btn primary" id="swStart" type="button">
+        Mulai
+       </button>
+       <button class="btn" id="swLap" type="button">
+        Catat lap
+       </button>
+       <button class="btn" id="swReset" type="button">
+        Reset
+       </button>
+      </div>
+      <ol class="lap-list" id="lapList">
+      </ol>
+     </article>
+     <article class="tool-card liquid notes-card">
+      <div class="tool-heading">
+       <div>
+        <span class="tool-kicker">
+         04 / QUICK NOTES
+        </span>
+        <h3>
+         Catatan cepat
+        </h3>
+       </div>
+       <span class="tool-icon">
+        ✎
+       </span>
+      </div>
+      <label class="sr-only" for="quickNote">
+       Catatan pribadi
+      </label>
+      <textarea id="quickNote" maxlength="1200" placeholder="Simpan ide, hal yang perlu diingat, atau catatan singkat…"></textarea>
+      <div class="note-meta">
+       <span id="noteCount">
+        0 / 1200
+       </span>
+       <span id="noteSaved">
+        Tersimpan otomatis
+       </span>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section aria-labelledby="fb-title" class="wrap" id="saran" style="padding:30px 0 70px">
+    <span class="eyebrow">
+     FEEDBACK
+    </span>
+    <h2 id="fb-title" style="margin:.45rem 0 .55rem">
+     Kritik &amp; saran
+    </h2>
+    <p class="sub">
+     Ada bug, ide fitur, atau hal yang kurang nyaman? Tulis di sini, langsung terkirim ke pembuat RULS LAB.
+    </p>
+    <article class="tool-card liquid fb-card">
+     <div class="tool-heading">
+      <div>
+       <span class="tool-kicker">
+        MASUKAN
+       </span>
+       <h3>
+        Kirim pesan
+       </h3>
+      </div>
+      <span class="tool-icon">
+       ✉
+      </span>
+     </div>
+     <form autocomplete="off" class="fb-grid" id="fbForm" novalidate="">
+      <div class="fb-field full">
+       <span class="fb-label" id="fbTypeLbl">
+        Jenis masukan
+       </span>
+       <div aria-labelledby="fbTypeLbl" class="fb-types" id="fbTypes" role="group">
+        <button aria-pressed="true" class="on" data-v="Saran" type="button">
+         💡 Saran
+        </button>
+        <button aria-pressed="false" data-v="Kritik" type="button">
+         🗯 Kritik
+        </button>
+        <button aria-pressed="false" data-v="Bug" type="button">
+         🐞 Bug
+        </button>
+        <button aria-pressed="false" data-v="Ide fitur" type="button">
+         ✨ Ide fitur
+        </button>
+       </div>
+      </div>
+      <div class="fb-field">
+       <label for="fbName">
+        Nama (opsional)
+       </label>
+       <input id="fbName" maxlength="40" name="nama" placeholder="Anonim juga boleh" type="text"/>
+      </div>
+      <div class="fb-field">
+       <span class="fb-label" id="fbRateLbl">
+        Kesan kamu (opsional)
+       </span>
+       <div aria-labelledby="fbRateLbl" class="fb-stars" id="fbStars" role="group">
+        <button aria-label="1 bintang" aria-pressed="false" data-v="1" type="button">
+         ★
+        </button>
+        <button aria-label="2 bintang" aria-pressed="false" data-v="2" type="button">
+         ★
+        </button>
+        <button aria-label="3 bintang" aria-pressed="false" data-v="3" type="button">
+         ★
+        </button>
+        <button aria-label="4 bintang" aria-pressed="false" data-v="4" type="button">
+         ★
+        </button>
+        <button aria-label="5 bintang" aria-pressed="false" data-v="5" type="button">
+         ★
+        </button>
+       </div>
+      </div>
+      <div class="fb-field full">
+       <label for="fbMsg">
+        Pesan
+       </label>
+       <textarea id="fbMsg" maxlength="1000" name="pesan" placeholder="Tulis kritik atau saran kamu di sini (minimal 10 karakter)…"></textarea>
+       <div class="fb-meta">
+        <span id="fbCount">
+         0 / 1000
+        </span>
+        <span id="fbDraft">
+         Draf tersimpan otomatis
+        </span>
+       </div>
+      </div>
+      <input aria-hidden="true" class="fb-hp" id="fbHp" name="website" tabindex="-1" type="text"/>
+      <div class="fb-field full">
+       <div class="fb-actions">
+        <button class="btn primary" id="fbSend" type="submit">
+         Kirim sekarang
+        </button>
+        <button class="btn" id="fbCopy" type="button">
+         Salin pesan
+        </button>
+        <span aria-live="polite" class="fb-status" id="fbStatus" role="status">
+        </span>
+       </div>
+      </div>
+     </form>
+    </article>
+   </section>
+   <div class="wrap" id="panel" style="padding:30px 0 70px">
+    <h2>
+     Panel kaca
+    </h2>
+    <p class="sub">
+     Atur seberapa cepat RGB bergerak, seberapa buram kacanya, dan seberapa terang cahaya latar.
+    </p>
+    <div class="panel g">
+     <div>
+      <label for="s1">
+       Kecepatan RGB
+      </label>
+      <input id="s1" max="3" min=".2" step=".1" type="range" value="1"/>
+     </div>
+     <div>
+      <label for="s2">
+       Keburaman kaca
+      </label>
+      <input id="s2" max="40" min="4" step="1" type="range" value="22"/>
+     </div>
+     <div>
+      <label for="s3">
+       Cahaya latar
+      </label>
+      <input id="s3" max="1" min="0" step=".05" type="range" value=".9"/>
+     </div>
+     <div>
+      <label>
+       Palet warna
+      </label>
+      <div aria-label="Palet warna" class="chips" role="group">
+       <button class="btn" data-p="rgb">
+        RGB
+       </button>
+       <button class="btn" data-p="senja">
+        Senja
+       </button>
+       <button class="btn" data-p="aurora">
+        Aurora
+       </button>
+      </div>
+     </div>
+     <div>
+      <label>
+       Data
+      </label>
+      <button class="btn" id="clr">
+       Hapus rekor
+      </button>
+     </div>
+     <div class="setting-reset">
+      <label>
+       Preferensi tampilan
+      </label>
+      <button class="btn" id="resetSettings" type="button">
+       Reset tampilan
+      </button>
+     </div>
+    </div>
+   </div>
+  </main>
+  <footer>
+   RULS LAB V4 © 2026. Liquid Glass Workspace.
+  </footer>
+  <script>
+      const rnd = n => Math.floor(Math.random() * n);
+   const store = {
+       get(k) {
+           try {
+               return JSON.parse(localStorage.getItem('rulslab:' + k));
+           }
+           catch (e) {
+               return null;
+           }
+       },
+       set(k, v) {
+           try {
+               localStorage.setItem('rulslab:' + k, JSON.stringify(v));
+           }
+           catch (e) {
+           }
+       }
+   };
+   const rec = Object.assign({ snake: 0, memori: 0, reaksi: 0, xo: 0, g2048: 0, tangkap: 0 }, store.get('rec') || {});
+   const fmt = {
+       snake: v => v ? v + ' poin' : 'belum ada', memori: v => v ? v + ' langkah' : 'belum ada', reaksi: v => v ? v + ' ms' : 'belum ada', xo: v => v + ' kali menang', g2048: v => v ? v + ' poin' : 'belum ada', tangkap: v => v ? v + ' tangkapan' : 'belum ada'
+   };
+   function showRec() {
+       for (const k in rec) {
+           const e = document.getElementById('r-' + k);
+           if (e)
+               e.textContent = 'Rekor: ' + fmt[k](rec[k]);
+       }
+   }
+   function setRec(k, v, low) {
+       if (low ? (!rec[k] || v < rec[k]) : v > rec[k]) {
+           rec[k] = v;
+           store.set('rec', rec);
+           showRec();
+           return true;
+       }
+       return false;
+   }
+   /* kilau kaca mengikuti kursor */
+   document.addEventListener('pointermove', e => { const g = e.target.closest && e.target.closest('.g'); if (g) {
+       const r = g.getBoundingClientRect();
+       g.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+       g.style.setProperty('--my', (e.clientY - r.top) + 'px');
+   } });
+   /* jam */
+   const clk = document.getElementById('clk');
+   const tickClk = () => {
+       clk.textContent = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).replace(/\./g, ':') + ' WIB';
+   };
+   tickClk();
+   setInterval(tickClk, 1000);
+   /* panel */
+   const root = document.documentElement.style;
+   s1.oninput = e => root.setProperty('--spd', e.target.value);
+   s2.oninput = e => root.setProperty('--blur', e.target.value + 'px');
+   s3.oninput = e => root.setProperty('--bo', e.target.value);
+   const setP = p => {
+       document.documentElement.dataset.p = p;
+       store.set('pal', p);
+       document.querySelectorAll('.chips [data-p]').forEach(b => b.classList.toggle('on', b.dataset.p == p));
+   };
+   document.querySelector('.chips').onclick = e => {
+       const b = e.target.closest('[data-p]');
+       if (b)
+           setP(b.dataset.p);
+   };
+   setP(store.get('pal') || 'rgb');
+   let ct;
+   clr.onclick = () => {
+       if (!ct) {
+           clr.textContent = 'Yakin? Tekan lagi';
+           ct = setTimeout(() => { ct = 0; clr.textContent = 'Hapus rekor'; }, 3000);
+           return;
+       }
+       clearTimeout(ct);
+       ct = 0;
+       clr.textContent = 'Hapus rekor';
+       for (const k in rec)
+           rec[k] = 0;
+       store.set('rec', rec);
+       showRec();
+   };
+   const kOk = e => {
+       if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName))
+           return false;
+       const r = stage.getBoundingClientRect();
+       return r.top < innerHeight * .85 && r.bottom > innerHeight * .15;
+   };
+   const games = {};
+   /* SNAKE */
+   games.snake = el => {
+       el.innerHTML = '<div class="hud"><span>Skor <b id="sc">0</b></span><span id="sm">Tekan panah atau geser layar</span></div><canvas width="360" height="360"></canvas><div class="pad"><i></i><button data-d="0,-1" aria-label="Atas">&#9650;</button><i></i><button data-d="-1,0" aria-label="Kiri">&#9664;</button><button data-d="0,1" aria-label="Bawah">&#9660;</button><button data-d="1,0" aria-label="Kanan">&#9654;</button></div>';
+       const c = el.querySelector('canvas'), x = c.getContext('2d'), N = 18, S = 20, sc = el.querySelector('#sc'), sm = el.querySelector('#sm');
+       let sn, d, nd, f, pts, run, over, t;
+       const place = () => {
+           do
+               f = {
+                   x: rnd(N), y: rnd(N)
+               };
+           while (sn.some(s => s.x == f.x && s.y == f.y));
+       };
+       const draw = () => {
+           x.clearRect(0, 0, 360, 360);
+           x.fillStyle = 'rgba(255,255,255,.04)';
+           for (let i = 0; i < N; i++)
+               for (let j = 0; j < N; j++)
+                   if ((i + j) % 2)
+                       x.fillRect(i * S, j * S, S, S);
+           const h = performance.now() / 8;
+           sn.forEach((s, i) => { x.fillStyle = 'hsl(' + ((h + i * 12) % 360) + ' 100% 60%)'; x.shadowColor = x.fillStyle; x.shadowBlur = 10; x.beginPath(); x.roundRect(s.x * S + 1, s.y * S + 1, S - 2, S - 2, 6); x.fill(); });
+           x.fillStyle = '#fff';
+           x.shadowColor = '#fff';
+           x.beginPath();
+           x.arc(f.x * S + 10, f.y * S + 10, 6, 0, 7);
+           x.fill();
+           x.shadowBlur = 0;
+       };
+       const reset = () => {
+           sn = [{ x: 9, y: 9 }, { x: 8, y: 9 }, { x: 7, y: 9 }];
+           d = nd = {
+               x: 1, y: 0
+           };
+           pts = 0;
+           sc.textContent = 0;
+           run = over = false;
+           place();
+           draw();
+       };
+       const tick = () => {
+           d = nd;
+           const h = {
+               x: (sn[0].x + d.x + N) % N, y: (sn[0].y + d.y + N) % N
+           };
+           if (sn.some(s => s.x == h.x && s.y == h.y)) {
+               run = false;
+               over = true;
+               sm.textContent = setRec('snake', pts) ? 'Rekor baru! Arahkan lagi untuk main' : 'Kena badan sendiri. Arahkan lagi untuk main';
+               draw();
+               return;
+           }
+           sn.unshift(h);
+           if (h.x == f.x && h.y == f.y) {
+               sc.textContent = ++pts;
+               place();
+           }
+           else
+               sn.pop();
+           draw();
+           t = setTimeout(tick, Math.max(60, 140 - pts * 3));
+       };
+       const go = (a, b) => {
+           if (over)
+               reset();
+           if (a == -d.x && b == -d.y)
+               return;
+           nd = {
+               x: a, y: b
+           };
+           if (!run) {
+               run = true;
+               sm.textContent = 'Jalan terus';
+               tick();
+           }
+       };
+       const kd = e => {
+           if (!kOk(e))
+               return;
+           const m = {
+               ArrowUp: [0, -1], w: [0, -1], ArrowDown: [0, 1], s: [0, 1], ArrowLeft: [-1, 0], a: [-1, 0], ArrowRight: [1, 0], d: [1, 0]
+           }[e.key];
+           if (m) {
+               e.preventDefault();
+               go(m[0], m[1]);
+           }
+       };
+       let sx, sy;
+       c.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+       c.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.max(Math.abs(dx), Math.abs(dy)) < 20)
+           return; Math.abs(dx) > Math.abs(dy) ? go(dx > 0 ? 1 : -1, 0) : go(0, dy > 0 ? 1 : -1); });
+       el.querySelector('.pad').onclick = e => {
+           const b = e.target.closest('button');
+           if (b) {
+               const p = b.dataset.d.split(',');
+               go(+p[0], +p[1]);
+           }
+       };
+       window.addEventListener('keydown', kd);
+       reset();
+       return () => {
+           clearTimeout(t);
+           window.removeEventListener('keydown', kd);
+       };
+   };
+   /* MEMORI */
+   games.memori = el => {
+       const S = ['\u25C6', '\u25CF', '\u25B2', '\u25A0', '\u2605', '\u271A'];
+       let deck, op, lock, mv, ok;
+       el.innerHTML = '<div class="hud"><span>Langkah <b id="mv">0</b></span><span>Pasangan <b id="pr">0</b>/6</span><button class="btn" id="rs">Acak ulang</button></div><div class="mgrid"></div>';
+       const gr = el.querySelector('.mgrid'), mvE = el.querySelector('#mv'), prE = el.querySelector('#pr');
+       const init = () => {
+           deck = [...S, ...S].sort(() => Math.random() - .5);
+           op = [];
+           lock = false;
+           mv = ok = 0;
+           el.querySelector('#rs').textContent = 'Acak ulang';
+           mvE.textContent = 0;
+           prE.textContent = 0;
+           gr.innerHTML = deck.map((s, i) => '<button class="mc" data-i="' + i + '" aria-label="Kartu ' + (i + 1) + '"><span style="color:hsl(' + (S.indexOf(s) * 60 + 300) + ' 100% 70%)">' + s + '</span></button>').join('');
+       };
+       gr.onclick = e => {
+           const c = e.target.closest('.mc');
+           if (!c || lock || c.classList.contains('fl'))
+               return;
+           c.classList.add('fl');
+           op.push(c);
+           if (op.length == 2) {
+               mv++;
+               mvE.textContent = mv;
+               const a = op[0], b = op[1];
+               if (deck[a.dataset.i] == deck[b.dataset.i]) {
+                   a.classList.add('ok');
+                   b.classList.add('ok');
+                   op = [];
+                   prE.textContent = ++ok;
+                   if (ok == 6) {
+                       setRec('memori', mv, 1);
+                       el.querySelector('#rs').textContent = 'Main lagi';
+                   }
+               }
+               else {
+                   lock = true;
+                   setTimeout(() => { a.classList.remove('fl'); b.classList.remove('fl'); op = []; lock = false; }, 700);
+               }
+           }
+       };
+       el.querySelector('#rs').onclick = init;
+       init();
+   };
+   /* REAKSI */
+   games.reaksi = el => {
+       el.innerHTML = '<div class="hud"><span>Terbaik <b id="bt">-</b></span></div><button class="rx" id="rx" data-s="idle">Tekan untuk mulai</button>';
+       const b = el.querySelector('#rx'), bt = el.querySelector('#bt');
+       let t0, to;
+       if (rec.reaksi)
+           bt.textContent = rec.reaksi + ' ms';
+       b.onclick = () => {
+           const s = b.dataset.s;
+           if (s == 'idle') {
+               b.dataset.s = 'wait';
+               b.textContent = 'Tunggu sampai warnanya berubah';
+               to = setTimeout(() => { b.dataset.s = 'go'; b.textContent = 'Sekarang!'; t0 = performance.now(); }, 1200 + Math.random() * 2800);
+           }
+           else if (s == 'wait') {
+               clearTimeout(to);
+               b.dataset.s = 'idle';
+               b.textContent = 'Terlalu cepat. Tekan untuk coba lagi';
+           }
+           else {
+               const t = Math.round(performance.now() - t0);
+               b.dataset.s = 'idle';
+               b.textContent = t + ' ms. Tekan untuk ulang';
+               setRec('reaksi', t, 1);
+               bt.textContent = rec.reaksi + ' ms';
+           }
+       };
+       return () => clearTimeout(to);
+   };
+   /* XO lawan AI */
+   games.xo = el => {
+       const L = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+       let b, over, busy, to;
+       el.innerHTML = '<div class="hud"><span id="st">Giliranmu (X)</span><button class="btn" id="rs">Ulang</button></div><div class="mgrid xo"></div>';
+       const gr = el.querySelector('.xo'), st = el.querySelector('#st');
+       const win = b => {
+           for (const q of L)
+               if (b[q[0]] && b[q[0]] == b[q[1]] && b[q[0]] == b[q[2]])
+                   return b[q[0]];
+           return b.includes('') ? null : 'd';
+       };
+       const mm = (b, p) => {
+           const w = win(b);
+           if (w)
+               return w == 'O' ? 1 : w == 'X' ? -1 : 0;
+           let r = p == 'O' ? -2 : 2;
+           b.forEach((v, i) => { if (!v) {
+               b[i] = p;
+               const s = mm(b, p == 'O' ? 'X' : 'O');
+               b[i] = '';
+               r = p == 'O' ? Math.max(r, s) : Math.min(r, s);
+           } });
+           return r;
+       };
+       const draw = () => {
+           gr.innerHTML = b.map((v, i) => '<button class="mc' + (v ? ' fl' : '') + '" data-i="' + i + '" aria-label="Kotak ' + (i + 1) + '" style="color:' + (v == 'X' ? '#00e5c0' : '#ff3b8d') + '"><span>' + v + '</span></button>').join('');
+       };
+       const end = () => {
+           const w = win(b);
+           if (!w)
+               return 0;
+           over = 1;
+           if (w == 'X') {
+               st.textContent = 'Kamu menang!';
+               setRec('xo', rec.xo + 1);
+           }
+           else
+               st.textContent = w == 'O' ? 'AI menang' : 'Seri';
+           return 1;
+       };
+       const ai = () => {
+           const e = [];
+           b.forEach((v, i) => { if (!v)
+               e.push(i); });
+           let m;
+           if (Math.random() < .25)
+               m = e[rnd(e.length)];
+           else {
+               let s = -2;
+               e.forEach(i => { b[i] = 'O'; const v = mm(b, 'X'); b[i] = ''; if (v > s) {
+                   s = v;
+                   m = i;
+               } });
+           }
+           b[m] = 'O';
+           draw();
+           busy = 0;
+           if (!end())
+               st.textContent = 'Giliranmu (X)';
+       };
+       gr.onclick = e => {
+           const c = e.target.closest('.mc');
+           if (!c || over || busy || b[c.dataset.i])
+               return;
+           b[c.dataset.i] = 'X';
+           draw();
+           if (!end()) {
+               busy = 1;
+               st.textContent = 'AI berpikir...';
+               to = setTimeout(ai, 400);
+           }
+       };
+       const init = () => {
+           clearTimeout(to);
+           b = Array(9).fill('');
+           over = busy = 0;
+           st.textContent = 'Giliranmu (X)';
+           draw();
+       };
+       el.querySelector('#rs').onclick = init;
+       init();
+       return () => clearTimeout(to);
+   };
+   /* 2048 */
+   games.g2048 = el => {
+       el.innerHTML = '<div class="hud"><span>Skor <b id="sc">0</b></span><span id="sm"></span><button class="btn" id="rs">Ulang</button></div><div class="b48"></div>';
+       const bd = el.querySelector('.b48'), sc = el.querySelector('#sc'), sm = el.querySelector('#sm');
+       let g, pts, over;
+       const add = () => {
+           const e = [];
+           g.forEach((v, i) => { if (!v)
+               e.push(i); });
+           if (e.length)
+               g[e[rnd(e.length)]] = Math.random() < .9 ? 2 : 4;
+       };
+       const draw = () => {
+           bd.innerHTML = g.map(v => '<div class="t"' + (v ? ' style="background:hsl(' + ((300 + Math.log2(v) * 28) % 360) + ' 90% 58%/.6);font-size:' + (v >= 1024 ? 1.05 : v >= 128 ? 1.35 : 1.7) + 'rem"' : '') + '>' + (v || '') + '</div>').join('');
+           sc.textContent = pts;
+       };
+       const stuck = () => !g.includes(0) && !g.some((v, i) => (i % 4 < 3 && v == g[i + 1]) || (i < 12 && v == g[i + 4]));
+       const mv = d => {
+           if (over)
+               return;
+           let moved = false;
+           for (let i = 0; i < 4; i++) {
+               const idx = [0, 1, 2, 3].map(j => d == 0 ? i * 4 + j : d == 2 ? i * 4 + 3 - j : d == 1 ? j * 4 + i : (3 - j) * 4 + i);
+               const ln = idx.map(k => g[k]).filter(Boolean);
+               for (let j = 0; j < ln.length - 1; j++)
+                   if (ln[j] == ln[j + 1]) {
+                       ln[j] *= 2;
+                       pts += ln[j];
+                       ln.splice(j + 1, 1);
+                   }
+               while (ln.length < 4)
+                   ln.push(0);
+               idx.forEach((k, j) => { if (g[k] != ln[j]) {
+                   g[k] = ln[j];
+                   moved = true;
+               } });
+           }
+           if (!moved)
+               return;
+           add();
+           draw();
+           setRec('g2048', pts);
+           if (stuck()) {
+               over = 1;
+               sm.textContent = 'Tidak ada langkah lagi';
+           }
+           else if (g.includes(2048))
+               sm.textContent = 'Dapat 2048! Lanjut terus';
+       };
+       const init = () => {
+           g = Array(16).fill(0);
+           pts = 0;
+           over = 0;
+           add();
+           add();
+           sm.textContent = 'Geser atau pakai panah';
+           draw();
+       };
+       const kd = e => {
+           if (!kOk(e))
+               return;
+           const m = {
+               ArrowLeft: 0, a: 0, ArrowUp: 1, w: 1, ArrowRight: 2, d: 2, ArrowDown: 3, s: 3
+           }[e.key];
+           if (m !== undefined) {
+               e.preventDefault();
+               mv(m);
+           }
+       };
+       let sx, sy;
+       bd.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+       bd.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.max(Math.abs(dx), Math.abs(dy)) < 24)
+           return; Math.abs(dx) > Math.abs(dy) ? mv(dx > 0 ? 2 : 0) : mv(dy > 0 ? 3 : 1); });
+       el.querySelector('#rs').onclick = init;
+       window.addEventListener('keydown', kd);
+       init();
+       return () => window.removeEventListener('keydown', kd);
+   };
+   /* TANGKAP */
+   games.tangkap = el => {
+       el.innerHTML = '<div class="hud"><span>Skor <b id="sc">0</b></span><span>Sisa <b id="tm">20</b> dtk</span><button class="btn" id="rs">Mulai</button></div><div class="mgrid"></div>';
+       const gr = el.querySelector('.mgrid'), sc = el.querySelector('#sc'), tm = el.querySelector('#tm'), bt = el.querySelector('#rs');
+       let pts = 0, left, on = false, lit = -1, t1, t2;
+       gr.innerHTML = Array.from({ length: 12 }, (_, i) => '<button class="mc" data-i="' + i + '" aria-label="Kotak ' + (i + 1) + '"><span>&#9679;</span></button>').join('');
+       const cells = gr.children;
+       const nxt = () => {
+           if (!on)
+               return;
+           if (lit >= 0)
+               cells[lit].classList.remove('fl', 'ok');
+           let n;
+           do
+               n = rnd(12);
+           while (n == lit);
+           lit = n;
+           cells[n].classList.add('fl', 'ok');
+           t2 = setTimeout(nxt, Math.max(380, 900 - pts * 25));
+       };
+       const fin = () => {
+           on = false;
+           clearInterval(t1);
+           clearTimeout(t2);
+           if (lit >= 0)
+               cells[lit].classList.remove('fl', 'ok');
+           lit = -1;
+           bt.textContent = 'Main lagi';
+           tm.textContent = 0;
+           setRec('tangkap', pts);
+       };
+       const start = () => {
+           pts = 0;
+           left = 20;
+           on = true;
+           sc.textContent = 0;
+           tm.textContent = 20;
+           bt.textContent = 'Ulang';
+           clearInterval(t1);
+           clearTimeout(t2);
+           t1 = setInterval(() => { tm.textContent = --left; if (left <= 0)
+               fin(); }, 1000);
+           nxt();
+       };
+       gr.onclick = e => {
+           const c = e.target.closest('.mc');
+           if (!on || !c || +c.dataset.i != lit)
+               return;
+           sc.textContent = ++pts;
+           clearTimeout(t2);
+           nxt();
+       };
+       bt.onclick = start;
+       return () => {
+           clearInterval(t1);
+           clearTimeout(t2);
+       };
+   };
+   /* quotes dan running text */
+   const Q = {
+       belajar: ['Paham pelan-pelan lebih baik daripada hafal cepat lalu lupa.', 'Satu jam fokus hari ini mengalahkan lima jam niat besok.', 'Error di kode bukan tanda kamu gagal, tapi petunjuk arah berikutnya.', 'Jangan menunggu siap. Mulai dari yang kecil, rapikan sambil jalan.', 'Ilmu yang dipraktikkan hari ini jadi kemampuan yang menetap besok.', 'Bandingkan dirimu dengan dirimu kemarin, bukan dengan layar orang lain.'],
+       dagang: ['Lindungi modal dulu, baru kejar untung.', 'Pasar boleh berisik, rencanamu harus tetap tenang.', 'Rugi kecil yang terkontrol adalah biaya belajar, bukan kegagalan.', 'Pelanggan percaya pada konsistensi, bukan janji manis.', 'Catat setiap keputusan. Yang tidak dicatat tidak bisa diperbaiki.', 'Sabar menunggu peluang yang jelas lebih berharga daripada sibuk mencoba segalanya.'],
+       kerja: ['Kerjakan yang paling penting dulu, sisanya menyusul.', 'Disiplin kecil tiap hari membangun hasil yang tidak bisa dipalsukan.', 'Selesai lebih baik daripada sempurna tapi tak pernah rilis.', 'Istirahat bukan kemalasan, itu bagian dari pekerjaan.', 'Tim yang saling bantu selesai lebih cepat daripada satu orang yang memaksa.', 'Di hari yang berat, cukup kerjakan satu langkah berikutnya.'],
+       saham: ['Beli bisnisnya, bukan sekadar kode emitennya.', 'Harga turun belum tentu salah, harga naik belum tentu benar. Cek lagi alasan kamu masuk.', 'Menabung saham secara rutin sering lebih tenang daripada mengejar tebakan harian.', 'Pelajari laporan keuangan dulu, ramai di grup obrolan belakangan.', 'Diversifikasi bukan tanda ragu, tapi cara supaya tidur lebih nyenyak.', 'Dividen datang buat yang sabar, bukan buat yang panik.'],
+       crypto: ['Di crypto, volatilitas itu pasti. Ukuran posisimu yang harus bisa kamu kendalikan.', 'Kalau belum paham asetnya, jangan pakai uang yang tidak sanggup hilang.', 'Jaga kunci dompetmu seperti kunci rumah. Jangan pernah dibagikan.', 'Hype cepat naik dan cepat turun. Riset yang tahan lama.', 'Curigai janji untung pasti. Di pasar mana pun, tidak ada yang pasti.', 'Pisahkan modal belajar dari uang kebutuhan hidup.'],
+       forex: ['Leverage memperbesar untung sekaligus rugi. Pakai sekecil yang masih bisa kamu tidurkan.', 'Stop loss ditentukan sebelum masuk, bukan sambil berharap.', 'Satu setup yang kamu kuasai lebih baik daripada sepuluh yang baru dicoba.', 'Berita besar bisa mengguncang harga, jurnal tradingmu yang menjaga kepalamu.', 'Risiko per transaksi kecil, napas panjang: begitu cara bertahan lama.', 'Revenge trading cuma menukar rugi kecil dengan rugi besar. Berhenti dulu, tarik napas.']
+   };
+   const seg = Object.values(Q).flat().map(t => '<span>' + t + '</span>').join('');
+   document.getElementById('tr').innerHTML = seg + seg;
+   let qk = store.get('qk');
+   if (!Q[qk])
+       qk = 'belajar';
+   let qi = rnd(Q[qk].length);
+   const qt = document.getElementById('qt'), qn = document.getElementById('qn');
+   function showQ(anim) {
+       const a = Q[qk];
+       qt.textContent = '\u201C' + a[qi] + '\u201D';
+       qn.textContent = (qi + 1) + ' dari ' + a.length;
+       document.querySelectorAll('.qch .btn').forEach(b => b.classList.toggle('on', b.dataset.q == qk));
+       if (anim) {
+           qt.classList.remove('sw');
+           void qt.offsetWidth;
+           qt.classList.add('sw');
+       }
+   }
+   document.querySelector('.qch').onclick = e => {
+       const b = e.target.closest('[data-q]');
+       if (b) {
+           qk = b.dataset.q;
+           qi = rnd(Q[qk].length);
+           store.set('qk', qk);
+           showQ(1);
+       }
+   };
+   qx.onclick = () => {
+       const n = Q[qk].length;
+       qi = (qi + 1 + rnd(n - 1)) % n;
+       showQ(1);
+   };
+   qs.onclick = async () => {
+       try {
+           await navigator.clipboard.writeText(Q[qk][qi]);
+           qs.textContent = 'Tersalin';
+       }
+       catch (e) {
+           qs.textContent = 'Gagal menyalin';
+       }
+       setTimeout(() => { qs.textContent = 'Salin'; }, 1500);
+   };
+   showQ();
+   /* cahaya latar bergerak */
+   (function () {
+       const b = document.querySelector('.b4');
+       if (!b)
+           return;
+       if (matchMedia('(prefers-reduced-motion:reduce)').matches) {
+           b.style.display = 'none';
+           return;
+       }
+       let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty, last = -9999, spd = 1;
+       addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; last = performance.now(); });
+       s1.addEventListener('input', e => { spd = +e.target.value; });
+       (function loop(t) {
+           if (t - last > 2500) {
+               tx = innerWidth / 2 + Math.cos(t * spd / 2600) * innerWidth * .32;
+               ty = innerHeight / 2 + Math.sin(t * spd / 3100) * innerHeight * .3;
+           }
+           x += (tx - x) * .06;
+           y += (ty - y) * .06;
+           const w = b.offsetWidth / 2;
+           b.style.transform = 'translate3d(' + (x - w) + 'px,' + (y - w) + 'px,0)';
+           requestAnimationFrame(loop);
+       })(0);
+   })();
+   /* pantau pasar */
+   function line(id, pts, f) {
+       const el = document.getElementById(id), W = 320, H = 140, p = 14, v = pts.map(a => a[1]), mn = Math.min(...v), mx = Math.max(...v), sx = i => p + i * (W - 2 * p) / (pts.length - 1), sy = y => H - p - (y - mn) / (mx - mn || 1) * (H - 2 * p - 14);
+       const d = pts.map((a, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(a[1]).toFixed(1)).join(''), ch = (v[v.length - 1] / v[0] - 1) * 100;
+       el.innerHTML = '<svg viewBox="0 0 320 140" role="img" aria-label="Grafik garis"><defs><linearGradient id="' + id + 'g" x1="0" x2="1"><stop offset="0" style="stop-color:var(--pink)"/><stop offset=".5" style="stop-color:var(--pur)"/><stop offset="1" style="stop-color:var(--cy)"/></linearGradient></defs><path d="' + d + '" fill="none" stroke="url(#' + id + 'g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' + pts.map((a, i) => '<circle cx="' + sx(i).toFixed(1) + '" cy="' + sy(a[1]).toFixed(1) + '" r="4" fill="#fff"><title>' + a[0] + ': ' + f(a[1]) + '</title></circle>').join('') + '</svg><div class="hud"><span>' + pts[0][0] + ' sampai ' + pts[pts.length - 1][0] + '</span><span class="chg ' + (ch < 0 ? 'dn' : 'up') + '">' + f(v[v.length - 1]) + ' (' + (ch > 0 ? '+' : '') + ch.toFixed(1) + '%)</span></div>';
+   }
+   line('ch1', [['30 Okt', 5057.05], ['6 Nov', 5050], ['11 Nov', 5115.03], ['12 Nov', 5250.89], ['13 Nov', 5344.4], ['20 Nov', 5146]], v => v.toLocaleString('id-ID', { maximumFractionDigits: 0 }));
+   line('ch2', [['11 Nov', 73550], ['12 Nov', 73658.5], ['13 Nov', 69376], ['14 Nov', 63800.5]], v => 'US$' + v.toLocaleString('id-ID', { maximumFractionDigits: 0 }));
+   const cv = id => +document.getElementById(id).value, nf = (v, n) => v.toLocaleString('id-ID', { maximumFractionDigits: n });
+   function calc() {
+       const m = cv('cm'), r = cv('cp'), d = Math.abs(cv('ce') - cv('cs')), k = m * r / 100;
+       document.getElementById('cr').textContent = (m > 0 && r > 0 && d > 0) ? 'Nominal risiko ' + nf(k, 2) + '. Ukuran posisi sekitar ' + nf(k / d, 4) + ' unit dengan jarak stop ' + nf(d, 4) + '. Belum termasuk biaya, spread, dan slippage.' : 'Isi modal, risiko, harga masuk, dan stop loss.';
+   }
+   document.querySelector('.calc').oninput = calc;
+   calc();
+   /* daftar game */
+   const G = [['snake', 'Snake', 'Makan titik, tumbuh panjang, jangan gigit badan sendiri.'], ['memori', 'Memori', 'Cocokkan enam pasang simbol dengan langkah sesedikit mungkin.'], ['reaksi', 'Reaksi', 'Tunggu layar menyala, lalu tekan secepat mungkin.'], ['xo', 'XO lawan AI', 'Kamu X. AI-nya jago, tapi sesekali salah langkah.'], ['g2048', '2048', 'Geser ubin, gabungkan angka kembar, kejar 2048.'], ['tangkap', 'Tangkap', 'Ketuk kotak yang menyala selama 20 detik. Makin banyak, makin cepat.']];
+   const cards = document.getElementById('cards'), stage = document.getElementById('stage');
+   let stop = null;
+   cards.innerHTML = G.map(g => '<button class="card g ring" data-id="' + g[0] + '" aria-pressed="false"><strong>' + g[1] + '</strong><span>' + g[2] + '</span><em id="r-' + g[0] + '"></em></button>').join('');
+   function openGame(id) {
+       if (stop)
+           stop();
+       stage.innerHTML = '';
+       stop = games[id](stage) || null;
+       cards.querySelectorAll('.card').forEach(c => { const on = c.dataset.id == id; c.classList.toggle('on', on); c.setAttribute('aria-pressed', on); });
+   }
+   cards.onclick = e => {
+       const c = e.target.closest('.card');
+       if (c)
+           openGame(c.dataset.id);
+   };
+   showRec();
+   openGame('snake');
+   /* ===== V4 additions: persistence, dashboard and productivity ===== */
+   (() => {
+       const $ = id => document.getElementById(id);
+       const read = (key, fallback) => { try {
+           const v = JSON.parse(localStorage.getItem('rulslab:v4:' + key));
+           return v === null ? fallback : v;
+       }
+       catch (_) {
+           return fallback;
+       } };
+       const write = (key, value) => { try {
+           localStorage.setItem('rulslab:v4:' + key, JSON.stringify(value));
+           return true;
+       }
+       catch (_) {
+           return false;
+       } };
+       // Dashboard reflects actual V3 records and quote selection.
+       const refresh = () => {
+           let records = {};
+           try {
+               records = JSON.parse(localStorage.getItem('rulslab:rec')) || {};
+           }
+           catch (_) { }
+           const keys = ['snake', 'memori', 'reaksi', 'xo', 'g2048', 'tangkap'];
+           const played = keys.filter(k => Number(records[k]) > 0).length;
+           $('totalRecords').textContent = played;
+           $('gamesPlayed').textContent = played + ' / 6';
+           const q = (() => { try {
+               return JSON.parse(localStorage.getItem('rulslab:qk')) || 'belajar';
+           }
+           catch (_) {
+               return 'belajar';
+           } })();
+           const labels = { belajar: 'Belajar', dagang: 'Berdagang', saham: 'Saham', crypto: 'Crypto', forex: 'Forex', kerja: 'Bekerja' };
+           $('quoteTopic').textContent = labels[q] || 'Belajar';
+           $('todayLabel').textContent = new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' }).format(new Date());
+       };
+       refresh();
+       document.querySelector('.qch')?.addEventListener('click', () => setTimeout(refresh, 0));
+       const oldSetRec = window.setRec;
+       if (typeof oldSetRec === 'function') {
+           window.setRec = function (...args) { const result = oldSetRec.apply(this, args); refresh(); return result; };
+       }
+       // Persist V3 visual sliders and palette, while keeping original input handlers.
+       const defaults = { s1: '1', s2: '22', s3: '.9' };
+       const saved = read('visual', {});
+       Object.keys(defaults).forEach(id => { const el = $(id); if (!el)
+           return; if (saved[id] !== undefined)
+           el.value = saved[id]; el.dispatchEvent(new Event('input', { bubbles: true })); el.addEventListener('input', () => { const v = read('visual', {}); v[id] = el.value; write('visual', v); }); });
+       const palette = read('palette', null);
+       if (palette && ['rgb', 'senja', 'aurora'].includes(palette)) {
+           const b = document.querySelector('.chips [data-p="' + palette + '"]');
+           b?.click();
+       }
+       document.querySelector('.chips')?.addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (b)
+           write('palette', b.dataset.p); });
+       $('resetSettings')?.addEventListener('click', () => { Object.entries(defaults).forEach(([id, value]) => { $(id).value = value; $(id).dispatchEvent(new Event('input', { bubbles: true })); }); write('visual', defaults); document.querySelector('.chips [data-p="rgb"]')?.click(); });
+       // Task manager; textContent is used so user-entered text is never interpreted as HTML.
+       let tasks = read('tasks', []);
+       if (!Array.isArray(tasks))
+           tasks = [];
+       const list = $('taskList');
+       const renderTasks = () => { list.replaceChildren(); tasks.forEach((task, index) => { const li = document.createElement('li'); li.className = 'task-item' + (task.done ? ' done' : ''); const check = document.createElement('input'); check.type = 'checkbox'; check.checked = !!task.done; check.setAttribute('aria-label', 'Tandai tugas selesai'); check.addEventListener('change', () => { tasks[index].done = check.checked; saveTasks(); }); const label = document.createElement('span'); label.textContent = task.text; const del = document.createElement('button'); del.type = 'button'; del.className = 'task-delete'; del.textContent = '×'; del.setAttribute('aria-label', 'Hapus tugas'); del.addEventListener('click', () => { tasks.splice(index, 1); saveTasks(); }); li.append(check, label, del); list.append(li); }); const done = tasks.filter(t => t.done).length; $('taskProgressText').textContent = done + ' dari ' + tasks.length + ' selesai'; $('taskProgressBar').style.width = (tasks.length ? done / tasks.length * 100 : 0) + '%'; };
+       const saveTasks = () => { write('tasks', tasks); renderTasks(); };
+       $('taskForm').addEventListener('submit', e => { e.preventDefault(); const input = $('taskInput'), value = input.value.trim(); if (!value) {
+           input.focus();
+           return;
+       } tasks.unshift({ text: value, done: false }); input.value = ''; saveTasks(); input.focus(); });
+       $('clearCompleted').addEventListener('click', () => { tasks = tasks.filter(t => !t.done); saveTasks(); });
+       renderTasks();
+       // Pomodoro countdown based on wall-clock deadline to avoid interval drift.
+       let duration = 1500, remaining = duration, endAt = 0, interval = null;
+       const paint = () => { $('focusClock').textContent = String(Math.floor(remaining / 60)).padStart(2, '0') + ':' + String(remaining % 60).padStart(2, '0'); };
+       const stop = () => { if (interval)
+           clearInterval(interval); interval = null; };
+       const update = () => { remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000)); paint(); if (remaining === 0) {
+           stop();
+           $('focusStatus').textContent = 'Sesi selesai · istirahat sejenak';
+           $('focusStart').textContent = 'Mulai lagi';
+       } };
+       document.querySelectorAll('.preset').forEach(button => button.addEventListener('click', () => { stop(); duration = Number(button.dataset.minutes) * 60; remaining = duration; $('focusStatus').textContent = 'Siap untuk fokus'; $('focusStart').textContent = 'Mulai'; document.querySelectorAll('.preset').forEach(b => b.classList.toggle('active', b === button)); paint(); }));
+       $('focusStart').addEventListener('click', () => { if (interval) {
+           stop();
+           update();
+           $('focusStatus').textContent = 'Dijeda';
+           $('focusStart').textContent = 'Lanjutkan';
+           return;
+       } if (remaining <= 0)
+           remaining = duration; endAt = Date.now() + remaining * 1000; $('focusStatus').textContent = 'Sedang fokus'; $('focusStart').textContent = 'Jeda'; interval = setInterval(update, 250); });
+       $('focusReset').addEventListener('click', () => { stop(); remaining = duration; paint(); $('focusStatus').textContent = 'Siap untuk fokus'; $('focusStart').textContent = 'Mulai'; });
+       paint();
+       // Stopwatch and lap list.
+       let running = false, started = 0, elapsed = 0, raf = 0, lap = 0;
+       const paintWatch = () => { const ms = elapsed + (running ? performance.now() - started : 0), tenths = Math.floor(ms / 100), m = Math.floor(tenths / 600), s = Math.floor(tenths % 600 / 10), t = tenths % 10; $('stopwatchClock').textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + '.' + t; if (running)
+           raf = requestAnimationFrame(paintWatch); };
+       $('swStart').addEventListener('click', () => { if (running) {
+           elapsed += performance.now() - started;
+           running = false;
+           cancelAnimationFrame(raf);
+           $('swStart').textContent = 'Lanjutkan';
+           $('stopwatchStatus').textContent = 'Dijeda';
+       }
+       else {
+           started = performance.now();
+           running = true;
+           $('swStart').textContent = 'Jeda';
+           $('stopwatchStatus').textContent = 'Sedang berjalan';
+           paintWatch();
+       } });
+       $('swLap').addEventListener('click', () => { if (!running)
+           return; lap++; const ms = elapsed + performance.now() - started; const li = document.createElement('li'); li.textContent = 'Lap ' + lap + ' · ' + (ms / 1000).toFixed(1) + ' dtk'; $('lapList').prepend(li); });
+       $('swReset').addEventListener('click', () => { running = false; elapsed = 0; lap = 0; cancelAnimationFrame(raf); $('stopwatchClock').textContent = '00:00.0'; $('stopwatchStatus').textContent = 'Belum dimulai'; $('swStart').textContent = 'Mulai'; $('lapList').replaceChildren(); });
+       // Autosaved notes with a small debounce.
+       const note = $('quickNote');
+       note.value = read('note', '');
+       const updateNote = () => { $('noteCount').textContent = note.value.length + ' / 1200'; };
+       let saveTimer;
+       note.addEventListener('input', () => { updateNote(); $('noteSaved').textContent = 'Menyimpan…'; clearTimeout(saveTimer); saveTimer = setTimeout(() => { $('noteSaved').textContent = write('note', note.value) ? 'Tersimpan' : 'Penyimpanan penuh'; }, 300); });
+       updateNote();
+       // Risk output makes limitations explicit; original V3 calculation remains in place.
+       const risk = $('cr');
+       if (risk && !risk.textContent.includes('kontrak'))
+           risk.textContent += ' Perhitungan ini belum memasukkan nilai kontrak, leverage, biaya, spread, dan slippage; gunakan sebagai estimasi edukatif.';
+   })();
+  </script>
+  <script>
+  /* ===== Chart live + candlestick ===== */
+  (() => {
+      const $ = id => document.getElementById(id);
+
+      /* BTC: harga live dari Binance WebSocket */
+      const btcEl = $('ch2'), note = $('btcNote');
+      if (btcEl && 'WebSocket' in window) {
+          const HOSTS = [
+              ['https://api.binance.com', 'wss://stream.binance.com:9443'],
+              ['https://data-api.binance.vision', 'wss://data-stream.binance.vision']
+          ];
+          const fmt = v => 'US$' + v.toLocaleString('id-ID', { maximumFractionDigits: 0 });
+          let pts = [], ws = null, host = 0, retry = 0, timer = 0, raf = 0, live = false;
+          const draw = () => {
+              raf = 0;
+              if (pts.length < 2) return;
+              const W = 320, H = 140, p = 14, v = pts.map(a => a[1]);
+              const mn = Math.min(...v), mx = Math.max(...v);
+              const sx = i => p + i * (W - 2 * p) / (pts.length - 1);
+              const sy = y => H - p - (y - mn) / (mx - mn || 1) * (H - 2 * p - 14);
+              const d = pts.map((a, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(a[1]).toFixed(1)).join('');
+              const ch = (v[v.length - 1] / v[0] - 1) * 100, last = pts.length - 1;
+              btcEl.innerHTML = '<svg viewBox="0 0 320 140" role="img" aria-label="Grafik garis harga Bitcoin live"><defs><linearGradient id="ch2g" x1="0" x2="1"><stop offset="0" style="stop-color:var(--pink)"/><stop offset=".5" style="stop-color:var(--pur)"/><stop offset="1" style="stop-color:var(--cy)"/></linearGradient></defs><path d="' + d + '" fill="none" stroke="url(#ch2g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="' + sx(last).toFixed(1) + '" cy="' + sy(v[last]).toFixed(1) + '" r="4.5" fill="#fff"/></svg><div class="hud"><span>● BINANCE LIVE · 60 menit</span><span class="chg ' + (ch < 0 ? 'dn' : 'up') + '">' + fmt(v[last]) + ' (' + (ch > 0 ? '+' : '') + ch.toFixed(2) + '%)</span></div>';
+          };
+          const schedule = () => { if (!raf) raf = requestAnimationFrame(draw); };
+          const connect = () => {
+              clearTimeout(timer);
+              try { ws = new WebSocket(HOSTS[host][1] + '/ws/btcusdt@kline_1m'); } catch (_) { return; }
+              ws.onopen = () => { if (note) note.textContent = 'Terhubung · harga BTC live dari Binance. Chart candlestick dan volume tersedia di bawah.'; };
+              ws.onmessage = e => {
+                  try {
+                      const k = JSON.parse(e.data).k;
+                      if (!k) return;
+                      const c = +k.c, t = k.t;
+                      if (pts.length && pts[pts.length - 1][0] === t) pts[pts.length - 1][1] = c;
+                      else { pts.push([t, c]); if (pts.length > 60) pts.shift(); }
+                      retry = 0;
+                      schedule();
+                  } catch (_) {}
+              };
+              ws.onclose = () => {
+                  ws = null;
+                  if (!document.hidden && live) {
+                      retry++;
+                      if (retry > 3) host = (host + 1) % HOSTS.length;
+                      timer = setTimeout(connect, Math.min(15000, 1500 * retry));
+                      if (note) note.textContent = 'Koneksi Binance terputus · mencoba menyambungkan ulang…';
+                  }
+              };
+              ws.onerror = () => { try { ws.close(); } catch (_) {} };
+          };
+          const start = async () => {
+              for (let i = 0; i < HOSTS.length; i++) {
+                  try {
+                      const r = await fetch(HOSTS[i][0] + '/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=60');
+                      if (!r.ok) throw new Error(r.status);
+                      const j = await r.json();
+                      pts = j.map(k => [k[0], +k[4]]);
+                      host = i; live = true;
+                      if (note) note.textContent = 'Mengambil harga live BTC dari Binance…';
+                      draw(); connect(); return;
+                  } catch (_) {}
+              }
+              if (note) note.textContent = 'Data Binance tidak dapat dimuat. Periksa koneksi atau coba lagi nanti.';
+          };
+          document.addEventListener('visibilitychange', () => {
+              if (!live) return;
+              if (document.hidden) {
+                  clearTimeout(timer);
+                  if (ws) { ws.onclose = null; try { ws.close(); } catch (_) {} ws = null; }
+              } else if (!ws) {
+                  fetch(HOSTS[host][0] + '/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=60')
+                      .then(r => r.json()).then(j => { pts = j.map(k => [k[0], +k[4]]); draw(); })
+                      .catch(() => {}).finally(connect);
+              }
+          });
+          start();
+      }
+
+      /* Candlestick TradingView: timeframe dan volume tersedia dari toolbar chart */
+      const addAdvancedChart = (id, symbol, title) => {
+          const el = $(id);
+          if (!el) return;
+          const params = new URLSearchParams({
+              symbol, interval: '15', theme: 'dark', style: '1',
+              timezone: 'Asia/Jakarta', locale: 'id', toolbarbg: 'rgba(0,0,0,0)',
+              hide_top_toolbar: '0', hide_side_toolbar: '0',
+              allow_symbol_change: '1', saveimage: '1', withdateranges: '1',
+              studies: 'Volume@tv-basicstudies', hideideas: '1'
+          });
+          const f = document.createElement('iframe');
+          f.src = 'https://s.tradingview.com/widgetembed/?' + params.toString();
+          f.title = title;
+          f.loading = 'lazy';
+          f.referrerPolicy = 'no-referrer';
+          f.allow = 'fullscreen';
+          f.style.cssText = 'width:100%;height:420px;border:0;border-radius:14px;display:block';
+          el.replaceChildren(f);
+      };
+      addAdvancedChart('ch2tv', 'BINANCE:BTCUSDT', 'Chart candlestick Bitcoin dengan volume dan pilihan timeframe');
+
+      /* IHSG dan USD/IDR tetap memakai widget TradingView mini */
+      const tvFrame = (symbol, title) => {
+          const cfg = { symbol, width: '100%', height: 220, locale: 'id', dateRange: '1D', colorTheme: 'dark', isTransparent: true, autosize: false, largeChartUrl: '' };
+          const f = document.createElement('iframe');
+          f.src = 'https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=id#' + encodeURIComponent(JSON.stringify(cfg));
+          f.title = title; f.loading = 'lazy'; f.setAttribute('referrerpolicy', 'no-referrer');
+          f.style.cssText = 'width:100%;height:220px;border:0;border-radius:14px;display:block;margin:.6rem 0';
+          return f;
+      };
+      const c1 = $('ch1'), tg1 = $('tg1');
+      if (c1 && tg1) {
+          const staticHTML = c1.innerHTML;
+          let liveOn = true;
+          const show = () => {
+              if (liveOn) { c1.replaceChildren(tvFrame('IDX:COMPOSITE', 'Chart IHSG')); tg1.textContent = 'Lihat data contoh'; }
+              else { c1.innerHTML = staticHTML; tg1.textContent = 'Lihat chart TradingView'; }
+          };
+          tg1.addEventListener('click', () => { liveOn = !liveOn; show(); });
+          show();
+      }
+      const c3 = $('ch3');
+      if (c3) c3.replaceChildren(tvFrame('FX_IDC:USDIDR', 'Chart USD/IDR'));
+  })();
+  </script>
+  <script>
+  /* ===== Kritik & saran ===== */
+  (() => {
+      /* ---- ATUR TUJUAN PENGIRIMAN DI SINI (isi salah satu atau lebih) ----
+         endpoint : URL form Formspree / Getform, mis. 'https://formspree.io/f/abcdwxyz' (terkirim ke email, tanpa buka aplikasi)
+         whatsapp : nomor format internasional tanpa +, mis. '6281234567890'
+         email    : alamat email, mis. 'kamu@gmail.com'                                  */
+      const FEEDBACK = { endpoint: 'https://formspree.io/f/meagpezw', whatsapp: '', email: 'fahrulazz18@gmail.com' };
+
+      const $ = id => document.getElementById(id);
+      const KEY = 'rulslab:v4:feedback-draft', LAST = 'rulslab:v4:feedback-last';
+      const form = $('fbForm'), msg = $('fbMsg'), nameEl = $('fbName'), st = $('fbStatus'), send = $('fbSend');
+      let type = 'Saran', rate = 0;
+      const lsGet = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } };
+      const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+      const lsDel = k => { try { localStorage.removeItem(k); } catch (_) {} };
+      const say = (t, c) => { st.textContent = t; st.className = 'fb-status' + (c ? ' ' + c : ''); };
+
+      const paint = () => {
+          document.querySelectorAll('#fbTypes button').forEach(b => { const on = b.dataset.v === type; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+          document.querySelectorAll('#fbStars button').forEach(b => { const on = +b.dataset.v <= rate; b.classList.toggle('on', on); b.setAttribute('aria-pressed', +b.dataset.v === rate); });
+          $('fbCount').textContent = msg.value.length + ' / 1000';
+      };
+      $('fbTypes').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { type = b.dataset.v; paint(); save(); } });
+      $('fbStars').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { rate = rate === +b.dataset.v ? 0 : +b.dataset.v; paint(); save(); } });
+
+      let t;
+      const save = () => { clearTimeout(t); t = setTimeout(() => { lsSet(KEY, { type, rate, name: nameEl.value, msg: msg.value }); $('fbDraft').textContent = 'Draf tersimpan'; }, 300); };
+      msg.addEventListener('input', () => { paint(); $('fbDraft').textContent = 'Menyimpan…'; save(); });
+      nameEl.addEventListener('input', save);
+      const d = lsGet(KEY);
+      if (d) { type = d.type || type; rate = d.rate || 0; nameEl.value = d.name || ''; msg.value = d.msg || ''; }
+      paint();
+
+      const compose = () => {
+          const lines = ['[RULS LAB] ' + type, 'Dari: ' + (nameEl.value.trim() || 'Anonim')];
+          if (rate)
+              lines.push('Kesan: ' + '★'.repeat(rate) + '☆'.repeat(5 - rate) + ' (' + rate + '/5)');
+          lines.push('', msg.value.trim());
+          return lines.join('\n');
+      };
+      const check = () => {
+          if (msg.value.trim().length < 10) {
+              say('Pesannya terlalu pendek, tulis minimal 10 karakter ya.', 'err');
+              msg.focus();
+              return false;
+          }
+          return true;
+      };
+      const done = text => { lsDel(KEY); msg.value = ''; nameEl.value = ''; rate = 0; type = 'Saran'; paint(); $('fbDraft').textContent = 'Draf tersimpan otomatis'; say(text, 'ok'); };
+
+      $('fbCopy').addEventListener('click', async () => {
+          if (!check()) return;
+          try { await navigator.clipboard.writeText(compose()); say('Pesan disalin ke clipboard.', 'ok'); }
+          catch (_) { msg.select(); say('Gagal menyalin otomatis, teks sudah terpilih, salin manual ya.', 'err'); }
+      });
+
+      form.addEventListener('submit', async e => {
+          e.preventDefault();
+          if ($('fbHp').value) return; /* bot terdeteksi */
+          if (!check()) return;
+          const last = +lsGet(LAST) || 0;
+          if (Date.now() - last < 30000) { say('Tunggu sebentar sebelum mengirim lagi.', 'err'); return; }
+          const text = compose();
+          if (FEEDBACK.endpoint) {
+              send.disabled = true;
+              say('Mengirim…');
+              try {
+                  const r = await fetch(FEEDBACK.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ jenis: type, nama: nameEl.value.trim() || 'Anonim', kesan: rate || '-', pesan: msg.value.trim(), _subject: 'RULS LAB: ' + type }) });
+                  if (!r.ok) throw new Error(r.status);
+                  lsSet(LAST, Date.now());
+                  done('Terkirim! Makasih banyak masukannya 🙌');
+              }
+              catch (_) { say('Gagal terkirim, cek koneksi lalu coba lagi.', 'err'); }
+              send.disabled = false;
+              return;
+          }
+          if (FEEDBACK.whatsapp) {
+              lsSet(LAST, Date.now());
+              window.open('https://wa.me/' + FEEDBACK.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+              done('WhatsApp dibuka, tinggal tekan kirim di sana.');
+              return;
+          }
+          if (FEEDBACK.email) {
+              lsSet(LAST, Date.now());
+              location.href = 'mailto:' + FEEDBACK.email + '?subject=' + encodeURIComponent('RULS LAB: ' + type) + '&body=' + encodeURIComponent(text);
+              done('Aplikasi email dibuka, tinggal tekan kirim di sana.');
+              return;
+          }
+          say('Tujuan pengiriman belum diatur (lihat FEEDBACK di kode). Pakai tombol Salin pesan dulu.', 'err');
+      });
+  })();
+  </script>
+ </body>
+</html>
+\n
+
